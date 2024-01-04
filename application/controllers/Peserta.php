@@ -39,7 +39,19 @@ public function rules()
 {
     $this->form_validation->set_rules('magang_nama','Nama Magang','required', array(
         'required' => '%$harus diisi !!'
-    ))
+    ));
+    $this->form_validation->set_rules('magang_email','Email','required', array(
+        'required' => '%$harus diisi !!'
+    ));
+    $this->form_validation->set_rules('magang_telp','No Telepon','required', array(
+        'required' => '%$harus diisi !!'
+    ));
+    $this->form_validation->set_rules('magang_alamat','Alamat','required', array(
+        'required' => '%$harus diisi !!'
+    ));
+    $this->form_validation->set_rules('status_nama','Status','required', array(
+        'required' => '%$harus diisi !!'
+    ));
 }
 
 }
