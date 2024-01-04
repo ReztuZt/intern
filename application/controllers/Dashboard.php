@@ -11,10 +11,5 @@ class Dashboard extends CI_Controller {
         $this->load->view('dashboard');
         $this->load->view('templates/footer');
     }
-<<<<<<< HEAD
-//test
-=======
 
-    //hdccrrr
->>>>>>> origin/test
 }
