@@ -9,4 +9,6 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('backend/dashboard/index', $data);
 	}
+
 }
+?>
