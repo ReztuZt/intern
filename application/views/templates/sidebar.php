@@ -250,5 +250,9 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
+     
       <div class="content">
-        <div class="container-fluid">
+    <div class="container-fluid">
+        <!-- Isi konten di sini -->
+    </div><!-- /.container-fluid -->
+</div>
