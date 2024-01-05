@@ -2,6 +2,7 @@
     <div class="card-header">
         <a href="<?= base_url('peserta/tambah') ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Peserta </a>
         <!-- <h3 class="card-title">Data Peserta Magang Manimonki</h3> -->
+   
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -30,7 +31,7 @@
                         <td><?= $ssw->status_nama ?></td>
                         <td>
                             <button data-toggle="modal" data-target="#edit<?= $ssw->id_magang ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
-                            <a href="" class="btn btn-warning btn-sm"><i class="fas fa-trash"></i></a>
+                            <a href="<?= base_url('peserta/delete/' . $ssw->id_magang) ?>" class="btn btn-warning btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
 
                         </td>
                     </tr>
@@ -40,9 +41,9 @@
     </div>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Launch demo modal
-    </button>
+    </button> -->
 
     <!-- Modal -->
    
