@@ -1,7 +1,3 @@
-</div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
-</div>
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
@@ -13,9 +9,10 @@
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
+    <!-- Konten control sidebar di sini -->
 </aside>
 <!-- /.control-sidebar -->
+
 </div>
 
 <!-- ./wrapper -->
@@ -24,7 +21,7 @@
 <script src="<?= base_url('assets/template') ?>/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('assets/template') ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
+<!-- DataTables & Plugins -->
 <script src="<?= base_url('assets/template') ?>/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url('assets/template') ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url('assets/template') ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
