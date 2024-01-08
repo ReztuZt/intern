@@ -232,6 +232,14 @@
     </a>
 </li>
 
+<!-- Pembayaran -->
+<li class="nav-item">
+    <a href="<?= base_url('pembayaran') ?>" class="nav-link <?php if($this->uri->segment(1) == 'pembayaran') echo 'active' ?>">
+    <i class="nav-icon fas fa-credit-card"></i>
+        <p>Pembayaran</p>
+    </a>
+</li>
+
 <!-- Status -->
 <li class="nav-item">
     <a href="<?= base_url('status') ?>" class="nav-link <?php if($this->uri->segment(1) == 'status') echo 'active' ?>">
@@ -240,7 +248,6 @@
     </a>
 </li>
 
-
 <!-- Profile -->
 <li class="nav-item">
     <a href="<?= base_url('profile') ?>" class="nav-link <?php if($this->uri->segment(1) == 'profile') echo 'active' ?>">
@@ -248,6 +255,7 @@
         <p>Profile</p>
     </a>
 </li>
+
 
 
 

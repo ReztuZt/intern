@@ -14,6 +14,7 @@ if ($conn->connect_error) {
 // Query untuk mengambil data dari tabel tb_course
 $sql = "SELECT course_nama, course_tanggal, course_jumlah FROM tb_course";
 $result = $conn->query($sql);
+
 ?>
 
   <!-- Main content -->
