@@ -224,27 +224,22 @@
     </a>
 </li>
 
-<!-- Data Magang -->
+<!-- Peserta -->
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="<?= base_url('peserta') ?>" class="nav-link <?php if($this->uri->segment(1) == 'peserta') echo 'active' ?>">
         <i class="nav-icon fas fa-users"></i>
-        <p>Data Magang <i class="right fas fa-angle-left"></i></p>
+        <p>Peserta</p>
     </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="<?= base_url('peserta') ?>" class="nav-link <?php if($this->uri->segment(1) == 'peserta') echo 'active' ?>">
-                <i class="nav-icon fas fa-user"></i>
-                <p>Peserta</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="<?= base_url('status') ?>" class="nav-link <?php if($this->uri->segment(1) == 'status') echo 'active' ?>">
-                <i class="nav-icon fas fa-check-circle"></i>
-                <p>Status</p>
-            </a>
-        </li>
-    </ul> 
 </li>
+
+<!-- Status -->
+<li class="nav-item">
+    <a href="<?= base_url('status') ?>" class="nav-link <?php if($this->uri->segment(1) == 'status') echo 'active' ?>">
+        <i class="nav-icon fas fa-check-circle"></i>
+        <p>Status</p>
+    </a>
+</li>
+
 
 <!-- Profile -->
 <li class="nav-item">
