@@ -83,12 +83,20 @@ class Peserta extends CI_Controller
             $this->index();
         } else {
             $data = array(
-                'id_magang'     => $id_magang,
-                'magang_nama'   => $this->input->post('magang_nama'),
-                'magang_email'  => $this->input->post('magang_email'),
-                'magang_telp'   => $this->input->post('magang_telp'),
-                'magang_alamat' => $this->input->post('magang_alamat'),
-                'status_nama'   => $this->input->post('status_nama'),
+                'id_magang'       => $id_magang,
+                'magang_nama'     => $this->input->post('magang_nama'),
+                'magang_email'    => $this->input->post('magang_email'),
+                'magang_telp'     => $this->input->post('magang_telp'),
+                'magang_alamat'   => $this->input->post('magang_alamat'),
+                'status_nama'     => $this->input->post('status_nama'),
+                'magang_ttl'      => $this->input->post('magang_ttl'),
+                'magang_agama'    => $this->input->post('magang_agama'),
+                'magang_gender'   => $this->input->post('magang_gender'),
+                'magang_kota'     => $this->input->post('magang_kota'),
+                'magang_kodepos'  => $this->input->post('magang_kodepos'),
+                'magang_ktp'      => $this->input->post('magang_ktp'),
+                'magang_portofolio' => $this->input->post('magang_portofolio'),
+                'magang_payment'  => $this->input->post('magang_payment'),
             );
     
             $this->Peserta_model->update_data($data, 'tb_magang');
@@ -103,6 +111,7 @@ class Peserta extends CI_Controller
             redirect('peserta');
         }
     }
+    
     
 
 
