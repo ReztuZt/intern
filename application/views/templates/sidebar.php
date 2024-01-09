@@ -216,6 +216,16 @@
     </a>
 </li>
 
+<!-- Divider untuk memisahkan Dashboard dari Master Data -->
+<li class="nav-item">
+    <hr class="sidebar-divider my-3">
+</li>
+
+<!-- Master Data (hanya label, tidak dapat diklik) -->
+<li class="nav-item">
+    <p class="nav-label text-uppercase font-weight-bold text-muted">Master Data</p>
+</li>
+
 <!-- Course -->
 <li class="nav-item">
     <a href="<?= base_url('course') ?>" class="nav-link <?php if($this->uri->segment(1) == 'course') echo 'active' ?>">
@@ -232,11 +242,11 @@
     </a>
 </li>
 
-<!-- Pembayaran -->
+<!-- Pelatihan -->
 <li class="nav-item">
-    <a href="<?= base_url('pembayaran') ?>" class="nav-link <?php if($this->uri->segment(1) == 'pembayaran') echo 'active' ?>">
-    <i class="nav-icon fas fa-credit-card"></i>
-        <p>Pembayaran</p>
+    <a href="<?= base_url('pelatihan') ?>" class="nav-link <?php if($this->uri->segment(1) == 'pelatihan') echo 'active' ?>">
+        <i class="nav-icon fas fa-chalkboard"></i>
+        <p>Pelatihan</p>
     </a>
 </li>
 
@@ -248,6 +258,19 @@
     </a>
 </li>
 
+<!-- Divider untuk memisahkan Master Data dari Pembayaran -->
+<li class="nav-item">
+    <hr class="sidebar-divider my-3">
+</li>
+
+<!-- Pembayaran -->
+<li class="nav-item">
+    <a href="<?= base_url('pembayaran') ?>" class="nav-link <?php if($this->uri->segment(1) == 'pembayaran') echo 'active' ?>">
+        <i class="nav-icon fas fa-credit-card"></i>
+        <p>Pembayaran</p>
+    </a>
+</li>
+
 <!-- Profile -->
 <li class="nav-item">
     <a href="<?= base_url('profile') ?>" class="nav-link <?php if($this->uri->segment(1) == 'profile') echo 'active' ?>">
@@ -255,6 +278,9 @@
         <p>Profile</p>
     </a>
 </li>
+
+
+
 
 
 
