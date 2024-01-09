@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Peserta_model extends CI_Model
+class Course_model extends CI_Model
 {
 
     public function get_data($table)
@@ -16,7 +16,7 @@ class Peserta_model extends CI_Model
 
     public function update_data($data, $table)
     {
-        $this->db->where('id_magang', $data['id_magang']);
+        $this->db->where('course_id', $data['course_id']);
         $this->db->update($table, $data);
     }
     
