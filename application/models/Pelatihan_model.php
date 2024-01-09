@@ -24,7 +24,12 @@ class Pelatihan_model extends CI_Model
         $this->db->where($where);
         $this->db->delete($table);
     }
-    
 
+    public function get_data_by_magang_nip($table, $magang_nip)
+    {
+        // Ambil data dari tabel berdasarkan magang_nip
+        $this->db->where('magang_nip', $magang_nip);
+        return $this->db->get($table);
+    }
 
 }

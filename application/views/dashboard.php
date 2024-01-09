@@ -19,11 +19,24 @@ $result = $conn->query($sql);
 
   <!-- Main content -->
   <section class="content">
-      <div class="container-fluid">
-          <div class="section-header">
-              <h1>MITrack Analytics Dashboard</h1>
-              <p>Monitoring Internship Progress and Key Metrics</p>
-          </div>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card bg-gradient-primary">
+                <div class="card-body text-white">
+                    <h2 class="text-center mb-4">MITrack Analytics Dashboard</h2>
+                    <p class="text-center lead">Manimonki Intern Tracking</p>
+                    <!-- <div class="text-center">
+                        <img src="https://example.com/path/to/your/image.jpg" alt="Manimonki Logo" class="img-fluid mt-4" style="max-width: 200px;">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+
           <!-- Small boxes (Stat box) -->
           <div class="row">
               <div class="col-lg-3 col-6">

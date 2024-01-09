@@ -23,4 +23,91 @@ class Pelatihan extends CI_Controller
         $this->load->view('pelatihan', $data); // Pass $data to the 'course' view
         $this->load->view('templates/footer');
     }
+
+
+    public function tambah()
+    {
+        $data['title'] = 'Tambah Pelatihan';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('tambah_pelatihan');
+        $this->load->view('templates/footer');
+    }
+
+
+
+    public function info()
+    {
+        // Ambil NIP magang dari sesi atau dari sumber lainnya
+        $magang_nip = $this->session->userdata('magang_nip'); // Gantilah dengan cara yang sesuai untuk mendapatkan NIP magang
+    
+        // Cek apakah NIP magang sudah ada
+        if ($magang_nip) {
+            // Data untuk ditampilkan di view
+            $data['title'] = 'Pelatihan';
+            $data['pelatihan_info'] = $this->Pelatihan_model->get_data_by_magang_nip('tb_pelatihan', $magang_nip)->result();
+    
+            // Load view dengan data yang sudah diambil
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pelatihan_info', $data);
+            $this->load->view('templates/footer');
+        } else {
+            // Handle jika NIP magang tidak tersedia
+            echo "NIP magang tidak valid atau tidak ditemukan.";
+        }
+    }
+
+    public function tambah_aksi()
+    {
+        echo "Inside tambah_aksi method";
+        // Validasi form
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            // Jika validasi gagal, kembalikan ke halaman tambah
+
+            $this->tambah();
+        } else {
+            // Jika validasi berhasil, tambahkan data ke database
+            $data = array(
+                'course_nama'      => $this->input->post('course_nama'),
+                'course_tanggal'   => $this->input->post('magang_nip'),
+                'course_ket'       => $this->input->post('pelatihan_ket'),
+            );
+
+            // Panggil model untuk menyimpan data
+            $this->Pelatihan_model->insert_data($data, 'tb_pelatihan'); // Assuming course_id is auto-incremented
+
+            // Set pesan sukses menggunakan session
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+               <strong>Sukses!</strong> Data berhasil ditambahkan.
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>');
+
+            // Redirect ke halaman course setelah menambahkan data
+            redirect('pelatihan');
+        }
+    }
+
+    public function _rules()
+    {
+        $this->form_validation->set_rules('course_nama', 'Nama Course', 'required', array(
+            'required' => '%s harus diisi !!'
+        ));
+        $this->form_validation->set_rules('magang_nip', 'Magang NIP', 'required', array(
+            'required' => '%s harus diisi !!'
+        ));
+        $this->form_validation->set_rules('pelatihan_ket', 'Keterangan Course', 'required', array(
+            'required' => '%s harus diisi !!'
+        ));
+
+
+    }
+
+     
+
 }
