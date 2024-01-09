@@ -81,9 +81,9 @@ class Auth extends CI_Controller
             } elseif ($admin->status == '0') {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger">User sudah tidak aktif</div>');
                 redirect('auth/login', 'refresh');
-            } elseif (!password_verify($this->input->post('password'), $admin->password)) {
-                 $this->session->set_flashdata('message', '<div class="alert alert-danger">Password Salah</div>');
-                 redirect('auth/login', 'refresh');
+            // } elseif (!password_verify($this->input->post('password'), $admin->password)) {
+            //      $this->session->set_flashdata('message', '<div class="alert alert-danger">Password Salah</div>');
+            //      redirect('auth/login', 'refresh');
             } else {
                 // Menyimpan data admin ke dalam session
                 $session= array(
