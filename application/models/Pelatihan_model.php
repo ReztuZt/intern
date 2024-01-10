@@ -14,11 +14,12 @@ class Pelatihan_model extends CI_Model
         $this->db->insert($table, $data);
     }
 
-    public function update_data($data, $table)
+    public function update_data($id_pelatihan, $data, $table)
     {
-        $this->db->where('pelatihan_id', $data['pelatihan_id']);
+        $this->db->where('pelatihan_id', $id_pelatihan);
         $this->db->update($table, $data);
     }
+    
     
     public function delete($where, $table){
         $this->db->where($where);

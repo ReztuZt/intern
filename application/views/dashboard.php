@@ -120,7 +120,7 @@ $result = $conn->query($sql);
                     <th>Nama Course</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>
-                    <th>More</th>
+                
                 </tr>
             </thead>
             <tbody>
@@ -132,11 +132,7 @@ $result = $conn->query($sql);
                                 <td>{$row['course_nama']}</td>
                                 <td>{$row['course_tanggal']}</td>
                                 <td>{$row['course_jumlah']}</td>
-                                <td>
-                                    <a href='#' class='text-muted'>
-                                        <i class='fas fa-search'></i>
-                                    </a>
-                                </td>
+                                
                             </tr>";
                     }
                 } else {
