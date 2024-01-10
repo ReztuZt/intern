@@ -149,7 +149,7 @@ class Pelatihan extends CI_Controller
         }
     }
     
-
 }
+    
 
 
