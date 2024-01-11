@@ -15,12 +15,12 @@ class Status extends CI_Controller
     public function index()
     {
 
-        $data['title'] = 'Course';
-        $data['course'] = $this->Status_model->get_data('tb_course')->result();
+        $data['title'] = 'Status';
+        $data['course'] = $this->Status_model->get_data('tb_status')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('course', $data); // Pass $data to the 'course' view
+        $this->load->view('status', $data); // Pass $data to the 'course' view
         $this->load->view('templates/footer');
     }
     
