@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header">
         <button data-toggle="modal" data-target="#edit" class="btn btn-success btn-sm" title="Tambah Pelatihan">
-    <i class="fas fa-plus"></i> Tambah Pelatihan
-</button>
+            <i class="fas fa-plus"></i> Tambah Pelatihan
+        </button>
 
 
     </div>
@@ -11,7 +11,7 @@
         <div class="table-responsive">
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
-                <tr class="text-center" style="background-color: #007bff; color: #fff;">
+                    <tr class="text-center" style="background-color: #007bff; color: #fff;">
                         <th>No</th>
 
                         <th>Nama</th>
@@ -29,9 +29,11 @@
                             <td><?= $ssw->pelatihan_ket ?></td>
                             <td>
                                 <div class="btn-group">
-                                <button data-toggle="modal" data-target="#editp<?= $ssw->pelatihan_id ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
+                                    <button data-toggle="modal" data-target="#editp<?= $ssw->pelatihan_id ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
                                     <a href="<?= base_url('pelatihan/delete/' . $ssw->pelatihan_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                     <!-- <a href="<?= base_url('pelatihan/info') ?>" class="btn btn-info"><i class="fas fa-info-circle"></i> Info</a> -->
+                                    <a href="<?= base_url('pelatihan/info/' . $ssw->course_nama) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i>ddd</a>
+                                    <a href="<?= base_url('pelatihan/displayMagangByCourse/' . $ssw->course_nama) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Display Magang Nama</a>
 
                                 </div>
                             </td>

@@ -37,27 +37,27 @@ class Pelatihan extends CI_Controller
 
 
 
-    public function info()
-    {
-        // Ambil NIP magang dari sesi atau dari sumber lainnya
-        $magang_nip = $this->session->userdata('magang_nip'); // Gantilah dengan cara yang sesuai untuk mendapatkan NIP magang
+    // public function info()
+    // {
+    //     // Ambil NIP magang dari sesi atau dari sumber lainnya
+    //     $magang_nip = $this->session->userdata('magang_nip'); // Gantilah dengan cara yang sesuai untuk mendapatkan NIP magang
 
-        // Cek apakah NIP magang sudah ada
-        if ($magang_nip) {
-            // Data untuk ditampilkan di view
-            $data['title'] = 'Pelatihan';
-            $data['pelatihan_info'] = $this->Pelatihan_model->get_data_by_magang_nip('tb_pelatihan', $magang_nip)->result();
+    //     // Cek apakah NIP magang sudah ada
+    //     if ($magang_nip) {
+    //         // Data untuk ditampilkan di view
+    //         $data['title'] = 'Pelatihan';
+    //         $data['pelatihan_info'] = $this->Pelatihan_model->get_data_by_magang_nip('tb_pelatihan', $magang_nip)->result();
 
-            // Load view dengan data yang sudah diambil
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('pelatihan_info', $data);
-            $this->load->view('templates/footer');
-        } else {
-            // Handle jika NIP magang tidak tersedia
-            echo "NIP magang tidak valid atau tidak ditemukan.";
-        }
-    }
+    //         // Load view dengan data yang sudah diambil
+    //         $this->load->view('templates/header', $data);
+    //         $this->load->view('templates/sidebar', $data);
+    //         $this->load->view('pelatihan_info', $data);
+    //         $this->load->view('templates/footer');
+    //     } else {
+    //         // Handle jika NIP magang tidak tersedia
+    //         echo "NIP magang tidak valid atau tidak ditemukan.";
+    //     }
+    // }
 
     public function tambah_aksi()
     {
@@ -110,7 +110,7 @@ class Pelatihan extends CI_Controller
     {
         $where = array('pelatihan_id' => $id);
 
-        $this->Pelatihan_model-> delete($where, 'tb_pelatihan');
+        $this->Pelatihan_model->delete($where, 'tb_pelatihan');
 
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Sukses!</strong> Data berhasil dihapus.
@@ -125,7 +125,7 @@ class Pelatihan extends CI_Controller
     public function edit_aksi($id_pelatihan)
     {
         $this->_rules();
-    
+
         if ($this->form_validation->run() == FALSE) {
             $this->edit($id_pelatihan);
         } else {
@@ -135,7 +135,7 @@ class Pelatihan extends CI_Controller
                 'pelatihan_ket'  => $this->input->post('pelatihan_ket'),
                 // Add other columns to be updated
             );
-    
+
             try {
                 $this->Pelatihan_model->update_data($id_pelatihan, $data, 'tb_pelatihan');
                 echo 'Update successful'; // Echo a success message if the update is successful
@@ -143,13 +143,28 @@ class Pelatihan extends CI_Controller
                 // Echo the error message
                 echo 'Error: ' . $e->getMessage();
             }
-    
+
             // Redirect or perform other actions after the update
             redirect('pelatihan');
         }
     }
-    
+
+
+    public function info($nip)
+    {
+        // Load the Pelatihan_model
+        $this->load->model('Pelatihan_model');
+
+        // Get magang data based on NIP
+        $data['magang_data'] = $this->Pelatihan_model->getMagangByNIP($nip);
+
+        // Load the view with the magang data
+        $this->load->view('pelatihan_info', $data);
+    }
+
+    public function displayMagangByCourse($course_nama)
+    {
+        $data['magang_nama'] = $this->Pelatihan_model->getMagangNamaByCourse($course_nama);
+        $this->load->view('pelatihan_info', $data);
+    }
 }
-    
-
-

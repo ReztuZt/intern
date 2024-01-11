@@ -183,6 +183,11 @@
                                     <input type="text" name="status_nama" class="form-control" value="<?= $ssw->status_nama ?>">
                                     <?= form_error('status_nama', '<div class="text-small text-danger">', '</div>'); ?>
                                 </div>
+                                <div class="form-group">
+                                    <label>Course Nama</label>
+                                    <input type="text" name="course_nama" class="form-control" value="<?= $ssw->course_nama ?>">
+                                    <?= form_error('course_nama', '<div class="text-small text-danger">', '</div>'); ?>
+                                </div>
                                 <!-- Add more fields as needed -->
                             </div>
                         </div>
