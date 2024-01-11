@@ -100,6 +100,14 @@ class Auth extends CI_Controller
             $this->load->view('backend/register', $data);
         }
     }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('message', '<div class="alert alert-info">berhasil LogOut</div>');
+
+        redirect('auth/login');
+        
+    }
     
 }
 ?>
