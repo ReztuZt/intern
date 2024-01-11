@@ -117,12 +117,11 @@
 
             <!-- Profile -->
             <li class="nav-item">
-              <a href="<?= base_url('profile') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'profile') echo 'active' ?>">
+              <a href="<?= base_url('user/profile/' . $this->session->id_admin); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'user/profile') echo 'active' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Profile</p>
               </a>
             </li>
-
 
 
 
