@@ -8,6 +8,7 @@ class Pelatihan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        cek_login();
         $this->load->model('Pelatihan_model');
         $this->load->library('form_validation');
     }
