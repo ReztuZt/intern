@@ -150,21 +150,32 @@ class Pelatihan extends CI_Controller
     }
 
 
-    public function info($nip)
-    {
-        // Load the Pelatihan_model
-        $this->load->model('Pelatihan_model');
+    // public function info($nip)
+    // {
+    //     // Load the Pelatihan_model
+    //     $this->load->model('Pelatihan_model');
 
-        // Get magang data based on NIP
-        $data['magang_data'] = $this->Pelatihan_model->getMagangByNIP($nip);
+    //     // Get magang data based on NIP
+    //     $data['magang_data'] = $this->Pelatihan_model->getMagangByNIP($nip);
 
-        // Load the view with the magang data
-        $this->load->view('pelatihan_info', $data);
-    }
+    //     // Load the view with the magang data
+    //     $this->load->view('pelatihan_info', $data);
+    // }
 
     public function displayMagangByCourse($course_nama)
     {
         $data['magang_nama'] = $this->Pelatihan_model->getMagangNamaByCourse($course_nama);
+        $this->load->view('pelatihan_info', $data);
+    }
+
+
+    public function info($course_nama)
+    {
+        // Panggil model untuk mendapatkan data magang berdasarkan course_nama
+        $this->load->model('Pelatihan_model');
+        $data['magang_by_course'] = $this->Pelatihan_model->getMagangByCourse($course_nama);
+
+        // Load view untuk menampilkan data
         $this->load->view('pelatihan_info', $data);
     }
 }

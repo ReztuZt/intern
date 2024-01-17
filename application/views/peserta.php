@@ -63,6 +63,12 @@
             </table>
         </div>
 
+        <script>
+    $(document).ready(function () {
+        $('#example1').DataTable();
+    });
+</script>
+
 
         <style>
             /* Add this internal CSS to your existing styles */
