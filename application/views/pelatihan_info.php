@@ -1,33 +1,20 @@
-<!-- View: pelatihan_info_view -->
-<h2>Magang Data for Course</h2>
-
-<table border="1">
-    <tr>
-        <th>Magang NIP</th>
-        <!-- Add more columns as needed -->
-    </tr>
-
-    <?php foreach ($magang_data as $magang) : ?>
+<!-- View untuk menampilkan data magang berdasarkan course_nama -->
+<table>
+    <thead>
         <tr>
-            <td><?= $magang->magang_nama ?></td>
-            <!-- Add more cells for additional columns -->
+            <th>No</th>
+            <th>Nama Magang</th>
+            <!-- Tambahkan kolom lain sesuai kebutuhan -->
         </tr>
-    <?php endforeach; ?>
+    </thead>
+    <tbody>
+        <?php $no = 1;
+        foreach ($magang_by_course as $magang) : ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $magang->magang_nama ?></td>
+                <!-- Tambahkan kolom lain sesuai kebutuhan -->
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>
-
-
-<!-- Your existing HTML and code here -->
-
-<!-- Display Magang Nama -->
-<div>
-    <?php if (!empty($magang_nama)): ?>
-        <h4>Magang Nama:</h4>
-        <ul>
-            <?php foreach ($magang_nama as $magang): ?>
-                <li><?= $magang['magang_nama']; ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>No Magang Nama found for the specified course.</p>
-    <?php endif; ?>
-</div>

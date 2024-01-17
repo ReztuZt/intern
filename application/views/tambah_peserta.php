@@ -79,17 +79,21 @@
            </div>
            <div class="col-md-6 mb-3">
                <label for="validationTooltip13">Status</label>
-               <input type="text" class="form-control" id="validationTooltip13" name="status_nama" required>
+               <select class="form-control" id="validationTooltip13" name="status_nama" required>
+                   <option value="Active">Active</option>
+                   <option value="Pending">Pending</option>
+               </select>
                <?= form_error('status_nama', '<div class="invalid-tooltip">', '</div>'); ?>
            </div>
+
        </div>
        <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label for="validationTooltip15">Nama Course</label>
-            <input type="text" class="form-control" id="validationTooltip15" name="course_nama" required>
-            <?= form_error('course_nama', '<div class="invalid-tooltip">', '</div>'); ?>
-        </div>
-    </div>
+           <div class="col-md-6 mb-3">
+               <label for="validationTooltip15">Nama Course</label>
+               <input type="text" class="form-control" id="validationTooltip15" name="course_nama" required>
+               <?= form_error('course_nama', '<div class="invalid-tooltip">', '</div>'); ?>
+           </div>
+       </div>
        <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i>Submit form</button>
    </form>
 
