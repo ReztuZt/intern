@@ -55,14 +55,20 @@ class Pelatihan_model extends CI_Model
         return $query->result_array();
     }
     
-     public function getMagangByCourse($course_nama) {
+     public function getMagangByCourse($course_code) {
     // Ambil data dari tabel tb_magang berdasarkan course_nama (pencocokan tepat)
-    $this->db->where('course_nama', $course_nama);
+    $this->db->where('course_code', $course_code);
     $query = $this->db->get('tb_magang');
 
     return $query->result();
 }
 
 
+public function searchCourse($searchTerm) {
+    $this->db->like('course_nama', $searchTerm);
+    $query = $this->db->get('tb_magang');
+
+    return $query->result();
+}
 
 }

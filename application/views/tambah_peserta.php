@@ -93,6 +93,11 @@
                <input type="text" class="form-control" id="validationTooltip15" name="course_nama" required>
                <?= form_error('course_nama', '<div class="invalid-tooltip">', '</div>'); ?>
            </div>
+           <div class="col-md-6 mb-3">
+               <label for="validationTooltip11">Course Code</label>
+               <input type="text" class="form-control" id="validationTooltip11" name="course_code" required>
+               <?= form_error('course_code', '<div class="invalid-tooltip">', '</div>'); ?>
+           </div>
        </div>
        <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i>Submit form</button>
    </form>

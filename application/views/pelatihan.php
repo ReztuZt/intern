@@ -1,9 +1,12 @@
 <div class="card">
     <div class="card-header">
+
         <button data-toggle="modal" data-target="#edit" class="btn btn-success btn-sm" title="Tambah Pelatihan">
             <i class="fas fa-plus"></i> Tambah Pelatihan
         </button>
+
     </div>
+
 
     <!-- /.card-header -->
     <div class="card-body">
@@ -28,8 +31,9 @@
                                 <div class="btn-group">
                                     <button data-toggle="modal" data-target="#editp<?= $ssw->pelatihan_id ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
                                     <a href="<?= base_url('pelatihan/delete/' . $ssw->pelatihan_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                    <a href="<?= base_url('pelatihan/info/' . url_title($ssw->course_nama, 'dash', TRUE)) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Info</a>
-                                    <a href="<?= base_url('pelatihan/info/' . str_replace(' ', '-', preg_replace('/[^\p{L}\p{N}\s]/u', '', $ssw->course_nama))) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Info</a>
+                                    <a href="<?= base_url('pelatihan/info/' . rawurlencode($ssw->course_code)) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Info</a>
+
+
 
 
 
@@ -42,7 +46,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,17 +67,24 @@
                         <?= form_error('course_nama', '<div class="invalid-tooltip">', '</div>'); ?>
                     </div>
 
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                         <label for="magangNIP" class="form-label">Magang NIP</label>
                         <input type="text" class="form-control" id="magangNIP" name="magang_nip" required>
                         <?= form_error('magang_nip', '<div class="invalid-tooltip">', '</div>'); ?>
-                    </div>
+                    </div> -->
 
                     <div class="col-md-12">
                         <label for="pelatihanKet" class="form-label">Pelatihan Keterangan</label>
                         <input type="text" class="form-control" id="pelatihanKet" name="pelatihan_ket" required>
                         <?= form_error('pelatihan_ket', '<div class="invalid-tooltip">', '</div>'); ?>
                     </div>
+                    
+                    <div class="col-md-12">
+                        <label for="pelatihanKet" class="form-label">Course Code</label>
+                        <input type="text" class="form-control" id="course_code" name="course_code" required>
+                        <?= form_error('course_code', '<div class="invalid-tooltip">', '</div>'); ?>
+                    </div>
+
 
                     <div class="col-md-12 mt-3">
                         <button class="btn btn-primary" type="submit" style="width: 100%;">
@@ -127,6 +137,11 @@
                                     <?= form_error('pelatihan_ket', '<div class="text-small text-danger">', '</div>'); ?>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="pelatihan_ket">Course Code</label>
+                                <input type="text" name="course_code" class="form-control" value="<?= $ssw->course_code ?>">
+                                <?= form_error('course_code', '<div class="text-small text-danger">', '</div>'); ?>
+                            </div>
                             <!-- Add more fields as needed -->
                         </div>
 
@@ -145,3 +160,9 @@
 
 
 </div>
+<script>
+    function redirectToInfo(courseName) {
+        var url = '<?= base_url('pelatihan/info/') ?>' + courseName;
+        window.location.href = url;
+    }
+</script>
