@@ -8,12 +8,7 @@
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
-        </li>
+
       </ul>
 
       <!-- Right navbar links -->
@@ -105,6 +100,9 @@
             <!-- Divider untuk memisahkan Master Data dari Pembayaran -->
             <li class="nav-item">
               <hr class="sidebar-divider my-3">
+            <li class="nav-item">
+              <p class="nav-label text-uppercase font-weight-bold text-muted">Activity</p>
+            </li>
             </li>
 
             <!-- Pembayaran -->
