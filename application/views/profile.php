@@ -10,7 +10,7 @@
           <div class="card card-primary card-outline">
             <div class="card-body box-profile">
               <div class="text-center">
-                <img src="<?= base_url('assets/template/') ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?= base_url('assets/template/') ?>dist/img/user_unknow.png" class="img-circle elevation-2" alt="User Image">
               </div>
 
               <h3 class="profile-username text-center"><?= $admin['nama_admin']; ?></h3>
@@ -29,9 +29,9 @@
                 </li>
               </ul>
 
-              <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#updateImageModal">
+              <!-- <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#updateImageModal">
                 <b>Update Image</b>
-              </button>
+              </button> -->
             </div>
 
             <!-- /.card-body -->
