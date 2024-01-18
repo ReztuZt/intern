@@ -150,6 +150,11 @@
                                             <input type="text" name="magang_agama" class="form-control" value="<?= $ssw->magang_agama ?>">
                                             <?= form_error('magang_agama', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Course code</label>
+                                            <input type="text" name="course_code" class="form-control" value="<?= $ssw->course_code ?>">
+                                            <?= form_error('course_code', '<div class="text-small text-danger">', '</div>'); ?>
+                                        </div>
                                         <!-- Add more fields as needed -->
                                     </div>
                                     <div class="col-md-6">
@@ -198,6 +203,7 @@
                                             <input type="text" name="course_nama" class="form-control" value="<?= $ssw->course_nama ?>">
                                             <?= form_error('course_nama', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
+
                                         <!-- Add more fields as needed -->
                                     </div>
                                 </div>

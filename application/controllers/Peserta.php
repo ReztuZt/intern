@@ -58,6 +58,7 @@ class Peserta extends CI_Controller
                 'magang_portofolio' => $this->input->post('magang_portofolio'),
                 'magang_payment' => $this->input->post('magang_payment'),
                 'course_nama'  => $this->input->post('course_nama'),
+                'course_code'  => $this->input->post('course_code'),
             );
     
             // Panggil model untuk menyimpan data
@@ -100,6 +101,7 @@ class Peserta extends CI_Controller
                 'magang_portofolio' => $this->input->post('magang_portofolio'),
                 'magang_payment'  => $this->input->post('magang_payment'),
                 'course_nama'  => $this->input->post('course_nama'),
+                'course_code'  => $this->input->post('course_code'),
             );
     
             $this->Peserta_model->update_data($data, 'tb_magang');

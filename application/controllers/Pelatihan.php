@@ -74,8 +74,9 @@ class Pelatihan extends CI_Controller
             // Jika validasi berhasil, tambahkan data ke database
             $data = array(
                 'course_nama'      => $this->input->post('course_nama'),
-                'magang_nip'   => $this->input->post('magang_nip'),
+                // 'magang_nip'   => $this->input->post('magang_nip'),
                 'pelatihan_ket'       => $this->input->post('pelatihan_ket'),
+                'course_code'       => $this->input->post('course_code')
             );
 
             // Panggil model untuk menyimpan data
@@ -99,9 +100,9 @@ class Pelatihan extends CI_Controller
         $this->form_validation->set_rules('course_nama', 'Nama Course', 'required', array(
             'required' => '%s harus diisi !!'
         ));
-        $this->form_validation->set_rules('magang_nip', 'Magang NIP', 'required', array(
-            'required' => '%s harus diisi !!'
-        ));
+        // $this->form_validation->set_rules('magang_nip', 'Magang NIP', 'required', array(
+        //     'required' => '%s harus diisi !!'
+ //       ));
         $this->form_validation->set_rules('pelatihan_ket', 'Keterangan Course', 'required', array(
             'required' => '%s harus diisi !!'
         ));
@@ -134,6 +135,7 @@ class Pelatihan extends CI_Controller
                 'course_nama'    => $this->input->post('course_nama'),
                 'magang_nip'     => $this->input->post('magang_nip'),
                 'pelatihan_ket'  => $this->input->post('pelatihan_ket'),
+                'course_code'  => $this->input->post('course_code'),
                 // Add other columns to be updated
             );
 
@@ -170,13 +172,31 @@ class Pelatihan extends CI_Controller
     }
 
 
-    public function info($course_nama)
+    public function info($course_code)
     {
         // Panggil model untuk mendapatkan data magang berdasarkan course_nama
+
+
         $this->load->model('Pelatihan_model');
-        $data['magang_by_course'] = $this->Pelatihan_model->getMagangByCourse($course_nama);
+        $data['magang_by_course'] = $this->Pelatihan_model->getMagangByCourse($course_code);
 
         // Load view untuk menampilkan data
+
+        $data['title'] = 'Info Pelatihan';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pelatihan_info', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function searchCourse()
+    {
+        $searchTerm = $this->input->post('searchTerm');
+
+        // Lakukan pencarian data di database
+        $result = $this->Pelatihan_model-- > searchCourse($searchTerm);
+
+        // Ubah hasil pencarian menjadi JSON dan kirimkan ke client
+        echo json_encode($result);
     }
 }

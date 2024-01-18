@@ -52,3 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Auth/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+// application/config/routes.php
+
+$route['pelatihan/searchCourse'] = 'pelatihan/searchCourse';
