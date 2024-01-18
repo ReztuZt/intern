@@ -107,7 +107,7 @@
 
             <!-- Pembayaran -->
             <li class="nav-item">
-              <a href="<?= base_url('pembayaran') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'pembayaran') echo 'active' ?>">
+              <a href="<?= base_url('payment') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'pembayaran') echo 'active' ?>">
                 <i class="nav-icon fas fa-credit-card"></i>
                 <p>Pembayaran</p>
               </a>
