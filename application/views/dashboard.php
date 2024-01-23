@@ -36,7 +36,7 @@ $result = $conn->query($sql);
 
         <!-- Row for Total Interns -->
         <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-6 col-6">
                 <!-- Total Interns Box -->
                 <div class="small-box bg-info">
                     <div class="inner">
@@ -51,7 +51,7 @@ $result = $conn->query($sql);
             </div>
 
             <!-- Active Interns Box -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-6 col-6">
                 <div class="small-box bg-info">
                     <div class="inner">
                         <h3><?= $active_magang_count ?></h3>
@@ -65,20 +65,7 @@ $result = $conn->query($sql);
             </div>
 
             <!-- Bounce Rate Box -->
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-success">
-                    <div class="inner">
-                        <h3>53<sup style="font-size: 20px background:transparent">%</sup></h3>
-                        <p>Bounce Rate</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-
-                </div>
-            </div>
-
-
+         
 
 
             <!-- ./col -->
