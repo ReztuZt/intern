@@ -9,6 +9,11 @@ class Peserta_model extends CI_Model
         return $this->db->get($table);
     }
 
+    public function getStatusNama(){
+        $query = $this->db->get('tb_status');
+        return $query->result();
+    }
+
     public function insert_data($data, $table)
     {
         $this->db->insert($table, $data);

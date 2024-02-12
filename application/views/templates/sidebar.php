@@ -37,7 +37,7 @@
             <img src="<?= base_url('assets/template/') ?>dist/img/user_unknow.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Restu Setiawan</a>
+            <a href="#" class="d-block">Rido Susepto</a>
           </div>
         </div>
 

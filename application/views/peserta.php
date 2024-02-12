@@ -21,13 +21,13 @@
                         <th>Email</th>
                         <th>Ttl</th>
                         <th>No Telepon</th>
-                        <th>Agama</th>
-                        <th>Gender</th>
+                        <!-- <th>Agama</th> -->
+                        <!-- <th>Gender</th> -->
                         <th>Alamat</th>
-                        <th>Kota</th>
-                        <th>Kode Pos</th>
-                        <th>Ktp</th>
-                        <th>Portofolio</th>
+                        <!-- <th>Kota</th> -->
+                        <!-- <th>Kode Pos</th> -->
+                        <!-- <th>Ktp</th> -->
+                        <!-- <th>Portofolio</th> -->
                         <th>Pembayaran</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -43,18 +43,18 @@
                             <td><?= $ssw->magang_email ?></td>
                             <td><?= $ssw->magang_ttl ?></td>
                             <td><?= $ssw->magang_telp ?></td>
-                            <td><?= $ssw->magang_agama ?></td>
-                            <td><?= $ssw->magang_gender ?></td>
+                            <!-- <td><?= $ssw->magang_agama ?></td>
+                            <td><?= $ssw->magang_gender ?></td> -->
                             <td><?= $ssw->magang_alamat ?></td>
-                            <td><?= $ssw->magang_kota ?></td>
+                            <!-- <td><?= $ssw->magang_kota ?></td>
                             <td><?= $ssw->magang_kodepos ?></td>
                             <td><?= $ssw->magang_ktp ?></td>
-                            <td><?= $ssw->magang_portofolio ?></td>
+                            <td><?= $ssw->magang_portofolio ?></td> -->
                             <td><?= $ssw->magang_payment ?></td>
                             <td><?= $ssw->status_nama ?></td>
                             <td>
-                                <button data-toggle="modal" data-target="#edit<?= $ssw->id_magang ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
-                                <a href="<?= base_url('peserta/delete/' . $ssw->id_magang) ?>" class="btn btn-warning btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
+                                <button data-toggle="modal" data-target="#edit<?= $ssw->id_magang ?>" class="btn btn-warning btn-sm m-1"><i class="fas fa-edit"></i></button>
+                                <a href="<?= base_url('peserta/delete/' . $ssw->id_magang) ?>" class="btn btn-warning btn-sm m-1" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
 
                             </td>
                         </tr>
@@ -86,11 +86,6 @@
                 });
             });
         </script>
-
-
-
-
-
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Launch demo modal
@@ -190,14 +185,15 @@
                                             <?= form_error('magang_payment', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
                                         <div class="form-group">
-                                            <label>Status</label>
+                                            <label for="status_nama">Status</label>
                                             <select name="status_nama" class="form-control">
-                                                <option value="Active" <?= ($ssw->status_nama == 'Active') ? 'selected' : '' ?>>Active</option>
-                                                <option value="Pending" <?= ($ssw->status_nama == 'Pending') ? 'selected' : '' ?>>Pending</option>
+                                                <option value=""><?= $status->status_nama ?></option>
+                                                <?php foreach ($tb_status as $status) : ?>
+                                                    <option value="<?= $status->status_nama ?>"><?= $status->status_nama ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                             <?= form_error('status_nama', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
-
                                         <div class="form-group">
                                             <label>Course Nama</label>
                                             <input type="text" name="course_nama" class="form-control" value="<?= $ssw->course_nama ?>">

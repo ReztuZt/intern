@@ -10,7 +10,6 @@ class Payment_model extends CI_Model
 
     public function getMagangNip()
     {
-        // Gantilah 'tb_magang' dengan nama tabel yang sesuai
         $query = $this->db->get('tb_magang');
         return $query->result();
     }

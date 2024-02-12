@@ -80,10 +80,12 @@
            <div class="col-md-6 mb-3">
                <label for="validationTooltip13">Status</label>
                <select class="form-control" id="validationTooltip13" name="status_nama" required>
-                   <option value="Active">Active</option>
-                   <option value="Pending">Pending</option>
-               </select>
-               <?= form_error('status_nama', '<div class="invalid-tooltip">', '</div>'); ?>
+                <option value="" selected>Pilih Status</option>
+                <?php foreach ($tb_status as $status): ?>
+                    <option value="<?= $status->status_nama ?>"><?= $status->status_nama ?></option>
+                <?php endforeach; ?>
+                </select>
+                <?= form_error('status_nama', '<div class="invalid-tooltip">', '</div>'); ?>
            </div>
 
        </div>
