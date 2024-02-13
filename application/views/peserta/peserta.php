@@ -137,7 +137,7 @@
                                         <div class="form-group">
                                             <label for="magang_agama">Agama</label>
                                             <select name="magang_agama" class="form-control">
-                                                <option value="" disabled selected >Pilih Agama</option>
+                                                <option value="" disabled selected>Pilih Agama</option>
                                                 <option value="Islam" <?= $ssw->magang_agama == "Islam" ? 'selected' : '' ?>>Islam</option>
                                                 <option value="Kristen Protestan" <?= $ssw->magang_agama == "Kristen Protestan" ? 'selected' : '' ?>>Kristen Protestan</option>
                                                 <option value="Kristen Katolik" <?= $ssw->magang_agama == "Kristen Katolik" ? 'selected' : '' ?>>Kristen Katolik</option>
@@ -256,6 +256,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                 </div>

@@ -68,9 +68,21 @@
 
             <!-- Course -->
             <li class="nav-item">
+              <a href="<?= base_url('pelatihan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'pelatihan') echo 'active' ?>">
+                <i class="nav-icon fas fa-chalkboard"></i>
+                <p>Kategori</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="<?= base_url('course') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'course') echo 'active' ?>">
                 <i class="nav-icon fas fa-book"></i>
                 <p>Course</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('status') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'status') echo 'active' ?>">
+                <i class="nav-icon fas fa-check-circle"></i>
+                <p>Status</p>
               </a>
             </li>
 
@@ -79,22 +91,6 @@
               <a href="<?= base_url('peserta') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'peserta') echo 'active' ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>Peserta</p>
-              </a>
-            </li>
-
-            <!-- Pelatihan -->
-            <li class="nav-item">
-              <a href="<?= base_url('pelatihan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'pelatihan') echo 'active' ?>">
-                <i class="nav-icon fas fa-chalkboard"></i>
-                <p>Pelatihan</p>
-              </a>
-            </li>
-
-            <!-- Status -->
-            <li class="nav-item">
-              <a href="<?= base_url('status') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'status') echo 'active' ?>">
-                <i class="nav-icon fas fa-check-circle"></i>
-                <p>Status</p>
               </a>
             </li>
 
