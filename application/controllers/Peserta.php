@@ -16,10 +16,11 @@ class Peserta extends CI_Controller
         $data['title'] = 'Peserta';
         $data['peserta'] = $this->Peserta_model->get_data('tb_magang')->result();
         $data['tb_status'] = $this->Peserta_model->get_data('tb_status')->result();
+        $data['tb_course'] = $this->Peserta_model->get_data('tb_course')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('peserta', $data);
+        $this->load->view('peserta/peserta', $data);
         $this->load->view('templates/footer');
     }
 
@@ -27,10 +28,11 @@ class Peserta extends CI_Controller
     {
         $data['title'] = 'Tambah Peserta';
         $data['tb_status'] = $this->Peserta_model->get_data('tb_status')->result();
+        $data['tb_course'] = $this->Peserta_model->get_data('tb_course')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('tambah_peserta');
+        $this->load->view('peserta/tambah_peserta');
         $this->load->view('templates/footer');
     }
 
@@ -41,8 +43,9 @@ class Peserta extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             // Jika validasi gagal, kembalikan ke halaman tambah
-            $data['tb_status'] = $this->Peserta_model->getStatusNama(); // Mengambil NIP dari model
-            $this->load->view('tambah_peserta', $data); // Ganti 'nama_view' dengan nama view yang sesuai
+            $data['tb_status'] = $this->Peserta_model->getStatusNama();
+            $data['tb_course'] = $this->Peserta_model->getCourseNama(); // Mengambil NIP dari model
+            $this->load->view('peserta/tambah_peserta', $data); // Ganti 'nama_view' dengan nama view yang sesuai
 
             $this->tambah();
         } else {
@@ -81,8 +84,6 @@ class Peserta extends CI_Controller
             redirect('peserta');
         }
     }
-
-
     public function edit_aksi($id_magang)
     {
         $this->_rules();

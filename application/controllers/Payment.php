@@ -22,7 +22,7 @@ class Payment extends CI_Controller
             // Load views: header, sidebar, profile, and footer
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
-            $this->load->view('payment', $data);
+            $this->load->view('payment/payment', $data);
             $this->load->view('templates/footer');
     }
 
@@ -33,7 +33,7 @@ class Payment extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('tambah_payment');
+        $this->load->view('payment/tambah_payment');
         $this->load->view('templates/footer');
     }
 
@@ -46,7 +46,7 @@ class Payment extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             // Jika validasi gagal, kembalikan ke halaman tambah
             $data['tb_magang'] = $this->Payment_model->getMagangNip(); // Mengambil NIP dari model
-            $this->load->view('tambah_payment', $data); // Ganti 'nama_view' dengan nama view yang sesuai
+            $this->load->view('payment/tambah_payment', $data); // Ganti 'nama_view' dengan nama view yang sesuai
 
             $this->tambah();
         } else {
@@ -172,7 +172,7 @@ class Payment extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
-        $this->load->view('payment_detail', $data); // Gantilah 'payment_detail' dengan nama view Anda
+        $this->load->view('payment/payment_detail', $data); // Gantilah 'payment_detail' dengan nama view Anda
         $this->load->view('templates/footer');
     }
     // application/controllers/Payment.php
@@ -183,7 +183,7 @@ class Payment extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             // Validasi gagal, tampilkan kembali formulir dengan pesan error
-            $this->load->view('tambah_payment');
+            $this->load->view('payment/tambah_payment');
         } else {
             // Validasi berhasil, proses upload gambar
             $config['upload_path'] = './uploads/';  // Ubah sesuai dengan folder tempat menyimpan gambar

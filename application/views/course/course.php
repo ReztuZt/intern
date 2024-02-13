@@ -42,8 +42,8 @@
                             <td><?= $ssw->course_ket ?></td>
 
                             <td>
-                                <button data-toggle="modal" data-target="#edit<?= $ssw->course_id ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
-                                <a href="<?= base_url('course/delete/' . $ssw->course_id) ?>" class="btn btn-warning btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
+                                <button data-toggle="modal" data-target="#edit<?= $ssw->course_id ?>" class="btn btn-warning btn-sm m-1"><i class="fas fa-edit"></i></button>
+                                <a href="<?= base_url('course/delete/' . $ssw->course_id) ?>" class="btn btn-warning btn-sm m-1" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
 
                             </td>
                         </tr>

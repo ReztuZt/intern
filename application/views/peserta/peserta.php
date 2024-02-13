@@ -1,13 +1,9 @@
 </div>
-
-
 </div>
-
 <div class="card">
     <div class="card-header">
         <a href="<?= base_url('peserta/tambah') ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Peserta </a>
         <!-- <h3 class="card-title">Data Peserta Magang Manimonki</h3> -->
-
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -54,8 +50,8 @@
                             <td><?= $ssw->status_nama ?></td>
                             <td>
                                 <button data-toggle="modal" data-target="#edit<?= $ssw->id_magang ?>" class="btn btn-warning btn-sm m-1"><i class="fas fa-edit"></i></button>
+                                <button data-toggle="modal" data-target="#detail<?= $ssw->id_magang ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>
                                 <a href="<?= base_url('peserta/delete/' . $ssw->id_magang) ?>" class="btn btn-warning btn-sm m-1" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
-
                             </td>
                         </tr>
                     </tbody>
@@ -68,8 +64,6 @@
                 $('#example1').DataTable();
             });
         </script>
-
-
         <style>
             /* Add this internal CSS to your existing styles */
             .table tr.highlight-row:hover {
@@ -141,10 +135,20 @@
                                             <?= form_error('magang_ttl', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
                                         <div class="form-group">
-                                            <label>Agama</label>
-                                            <input type="text" name="magang_agama" class="form-control" value="<?= $ssw->magang_agama ?>">
+                                            <label for="magang_agama">Agama</label>
+                                            <select name="magang_agama" class="form-control">
+                                                <option value="" disabled selected >Pilih Agama</option>
+                                                <option value="Islam" <?= $ssw->magang_agama == "Islam" ? 'selected' : '' ?>>Islam</option>
+                                                <option value="Kristen Protestan" <?= $ssw->magang_agama == "Kristen Protestan" ? 'selected' : '' ?>>Kristen Protestan</option>
+                                                <option value="Kristen Katolik" <?= $ssw->magang_agama == "Kristen Katolik" ? 'selected' : '' ?>>Kristen Katolik</option>
+                                                <option value="Hindu" <?= $ssw->magang_agama == "Hindu" ? 'selected' : '' ?>>Hindu</option>
+                                                <option value="Buddha" <?= $ssw->magang_agama == "Buddha" ? 'selected' : '' ?>>Buddha</option>
+                                                <option value="Khonghucu" <?= $ssw->magang_agama == "Khonghucu" ? 'selected' : '' ?>>Khonghucu</option>
+                                                <!-- Tambahkan opsi agama lainnya sesuai kebutuhan -->
+                                            </select>
                                             <?= form_error('magang_agama', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
+
                                         <div class="form-group">
                                             <label>Course code</label>
                                             <input type="text" name="course_code" class="form-control" value="<?= $ssw->course_code ?>">
@@ -199,17 +203,60 @@
                                             <input type="text" name="course_nama" class="form-control" value="<?= $ssw->course_nama ?>">
                                             <?= form_error('course_nama', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
-
                                         <!-- Add more fields as needed -->
                                     </div>
                                 </div>
-
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-save me-2"></i> Simpan</button>
                                     <button type="reset" class="btn btn-secondary"><i class="fas fa-trash me-2"></i> Reset</button>
                                 </div>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <?php foreach ($peserta as $ssw) : ?>
+            <div class="modal fade" id="detail<?= $ssw->id_magang ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); border: none; border-radius: 10px;">
+                        <div class="modal-header" style="background-color: #007bff; color: #fff; border-radius: 10px 10px 0 0;">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                <i class="fas fa-edit me-2"></i> Detail Peserta
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="color: #fff;">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>NIP:</strong> <?= $ssw->magang_nip ?></p>
+                                    <p><strong>NAMA:</strong> <?= $ssw->magang_nama ?></p>
+                                    <p><strong>EMAIL:</strong> <?= $ssw->magang_email ?></p>
+                                    <p><strong>TTL:</strong> <?= $ssw->magang_ttl ?></p>
+                                    <p><strong>No.TLPN:</strong> <?= $ssw->magang_telp ?></p>
+                                    <p><strong>AGAMA:</strong> <?= $ssw->magang_agama ?></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>GENDER:</strong> <?= $ssw->magang_gender ?></p>
+                                    <p><strong>ALAMAT:</strong> <?= $ssw->magang_alamat ?></p>
+                                    <p><strong>KOTA:</strong> <?= $ssw->magang_kota ?></p>
+                                    <p><strong>KODE POS:</strong> <?= $ssw->magang_kodepos ?></p>
+                                    <p><strong>KTP:</strong> <?= $ssw->magang_ktp ?></p>
+                                    <p><strong>PORTOFOLIO:</strong> <?= $ssw->magang_portofolio ?></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><strong>PAYMENT:</strong> <?= $ssw->magang_payment ?></p>
+                                    <p><strong>STATUS:</strong> <?= $ssw->status_nama ?></p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

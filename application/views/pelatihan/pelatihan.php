@@ -32,11 +32,6 @@
                                     <button data-toggle="modal" data-target="#editp<?= $ssw->pelatihan_id ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
                                     <a href="<?= base_url('pelatihan/delete/' . $ssw->pelatihan_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                     <a href="<?= base_url('pelatihan/info/' . rawurlencode($ssw->course_code)) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Info</a>
-
-
-
-
-
                                 </div>
                             </td>
                         </tr>

@@ -21,7 +21,7 @@ class Course extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('course', $data); // Pass $data to the 'course' view
+        $this->load->view('course/course', $data); // Pass $data to the 'course' view
         $this->load->view('templates/footer');
     }
 
@@ -31,7 +31,7 @@ class Course extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('tambah_course');
+        $this->load->view('course/tambah_course');
         $this->load->view('templates/footer');
     }
 

@@ -21,7 +21,7 @@ class Pelatihan extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pelatihan', $data); // Pass $data to the 'course' view
+        $this->load->view('pelatihan/pelatihan', $data); // Pass $data to the 'course' view
         $this->load->view('templates/footer');
     }
 
@@ -32,7 +32,7 @@ class Pelatihan extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('tambah_pelatihan');
+        $this->load->view('pelatihan/tambah_pelatihan');
         $this->load->view('templates/footer');
     }
 
@@ -168,7 +168,7 @@ class Pelatihan extends CI_Controller
     public function displayMagangByCourse($course_nama)
     {
         $data['magang_nama'] = $this->Pelatihan_model->getMagangNamaByCourse($course_nama);
-        $this->load->view('pelatihan_info', $data);
+        $this->load->view('pelatiahan/pelatihan_info', $data);
     }
 
 
@@ -185,7 +185,7 @@ class Pelatihan extends CI_Controller
         $data['title'] = 'Info Pelatihan';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pelatihan_info', $data);
+        $this->load->view('pelatiahan/pelatihan_info', $data);
         $this->load->view('templates/footer');
     }
 

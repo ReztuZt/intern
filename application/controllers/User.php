@@ -24,7 +24,7 @@ class User extends CI_Controller
             // Load views: header, sidebar, profile, and footer
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
-            $this->load->view('profile', $data);
+            $this->load->view('users/profile', $data);
             $this->load->view('templates/footer');
         } else {
             redirect('dashboard', 'refresh');

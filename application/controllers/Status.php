@@ -21,7 +21,7 @@ class Status extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('status', $data); // Pass $data to the 'course' view
+        $this->load->view('status/status', $data); // Pass $data to the 'course' view
         $this->load->view('templates/footer');
     }
 
@@ -32,7 +32,7 @@ class Status extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('tambah_status');
+        $this->load->view('status/tambah_status');
         $this->load->view('templates/footer');
     }
 

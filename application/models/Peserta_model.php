@@ -14,6 +14,11 @@ class Peserta_model extends CI_Model
         return $query->result();
     }
 
+    public function getCourseNama(){
+        $query = $this->db->get('tb_course');
+        return $query->result();
+    }
+
     public function insert_data($data, $table)
     {
         $this->db->insert($table, $data);

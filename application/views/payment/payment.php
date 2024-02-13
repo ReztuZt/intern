@@ -66,9 +66,6 @@
                                     <button data-toggle="modal" data-target="#edit<?= $ssw->payment_id ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
                                     <a href="<?= base_url('payment/delete/' . $ssw->payment_id) ?>" class="btn btn-warning btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
                                 </td>
-
-
-
                             </tr>
                         </tbody>
                     <?php endforeach ?>
