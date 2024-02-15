@@ -31,7 +31,7 @@ class Peserta extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('tambah_peserta');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer'); 
     }
 
     public function tambah_aksi()

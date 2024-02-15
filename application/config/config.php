@@ -1,8 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-$config['base_url'] = 'http://192.168.1.36/master/';
-
+// $config['base_url'] = 'http://192.168.1.36/master/';
+$config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+$config['base_url'] .= "://" . $_SERVER['HTTP_HOST'];
+$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 
 $config['index_page'] = '';
 
@@ -27,7 +29,7 @@ $config['subclass_prefix'] = 'MY_';
 /*
 |--------------------------------------------------------------------------
 | Composer auto-loading
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------- 
 |
 | Enabling this setting will tell CodeIgniter to look for a Composer
 | package auto-loader script in application/vendor/autoload.php.
@@ -42,11 +44,11 @@ $config['subclass_prefix'] = 'MY_';
 | For more information about Composer, please visit http://getcomposer.org/
 |
 | Note: This will NOT disable or override the CodeIgniter-specific
-|	autoloading (application/config/autoload.php)
+|	autoloading (application/config/autoload.php)i
 */
 $config['composer_autoload'] = FALSE;
 
-/*
+/* 
 |--------------------------------------------------------------------------
 | Allowed URL Characters
 |--------------------------------------------------------------------------
