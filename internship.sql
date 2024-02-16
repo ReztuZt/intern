@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2024 at 10:07 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Waktu pembuatan: 16 Feb 2024 pada 08.07
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,44 +24,53 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `nama_admin` varchar(42) NOT NULL,
+  `nama_admin` varchar(40) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp(),
-  `image_admin` varchar(255) NOT NULL,
-  `status` varchar(20) NOT NULL
+  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `image_admin` varchar(225) NOT NULL,
+  `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama_admin`, `created`, `modified`, `image_admin`, `status`) VALUES
-(1, 'tyy', '$2y$10$9.zBCBaXb9mUSFtVyx9dq.opd', 'restu', '2024-01-17 03:46:06', '2024-01-17 03:46:06', '', '1');
+(15, 'rido444', '$2y$10$R.kQx9kZ9XJXtN2H1ZbUr.ngF', 'Rido Susepto', '2024-01-08 06:41:57', '2024-02-12 08:13:15', 'views/uploads/', 1),
+(16, 'rido', '$2y$10$w9nPfdyIuVbd2O5zTa5NC.iSs', 'Rido susepto', '2024-01-08 08:58:33', '2024-02-05 03:42:20', '', 1),
+(17, 'andika allo aaa', '$2y$10$yMwPdt9Iliyfy.voe9dDnO8qt', 'andika ds', '2024-01-08 10:15:16', '2024-01-11 03:53:34', 'path/to/your/uploaded/image.jpg', 1),
+(18, 'monki', '$2y$10$zfxsBrYe5huKqi4qedwqfeNVq', 'monki', '2024-01-09 03:17:56', '2024-01-09 03:17:56', '', 1),
+(19, 'restu setiawan', '$2y$10$AxWOk6u/oOq9lbe.bjcDY.xd4', 'restu', '2024-01-09 08:21:05', '2024-01-09 08:21:05', '', 1),
+(20, 'ridoss', '$2y$10$V4YLbJqVMu9FLwXjz2L4t.awR', 'Rido Susepto 26', '2024-02-13 02:40:36', '2024-02-16 06:59:07', '', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_admin`
+-- Struktur dari tabel `payment_detail`
 --
 
-CREATE TABLE `tb_admin` (
-  `id_admin` int(11) NOT NULL,
-  `ussername` int(20) NOT NULL,
-  `password` int(32) NOT NULL,
-  `nama_admin` int(42) NOT NULL
+CREATE TABLE `payment_detail` (
+  `payment_detail_id` int(11) NOT NULL,
+  `payment_id` int(11) DEFAULT NULL,
+  `magang_nip` varchar(20) DEFAULT NULL,
+  `payment_status` int(11) DEFAULT NULL,
+  `payment_date` date DEFAULT NULL,
+  `payment_catatan` varchar(255) DEFAULT NULL,
+  `payment_file` varchar(255) DEFAULT NULL,
+  `file_payment` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_course`
+-- Struktur dari tabel `tb_course`
 --
 
 CREATE TABLE `tb_course` (
@@ -76,21 +85,47 @@ CREATE TABLE `tb_course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_course`
+-- Dumping data untuk tabel `tb_course`
 --
 
 INSERT INTO `tb_course` (`course_id`, `course_nama`, `course_tanggal`, `course_jumlah`, `course_ket`, `course_deskripsi`, `course_mentor`, `course_harga`) VALUES
-(1, 'Pemrograman Java Lanjutan', '2024-04-05', '18', '0csdc', 'Kursus ini membahas topik pemrograman Java tingkat lanjut untuk pengembang berpengalaman.', 'Restu Setiawan', '201.99'),
-(2, 'Dasar-dasar Pembelajaran Mesin', '2024-05-20', '32', 'isinya test', 'Jelajahi dasar-dasar pembelajaran mesin dan pahami algoritma-algoritma populer.', 'Rido Susepto', '179.99'),
+(1, 'Pemrograman Java Lanjutan', '2024-04-05', '17777', '0csdc', 'Kursus ini membahas topik pemrograman Java tingkat lanjut untuk pengembang berpengalaman.', 'Restu Setiawan', '125.99'),
+(2, 'Dasar-dasar Pembelajaran Mesin', '2024-05-20', '32', '0', 'Jelajahi dasar-dasar pembelajaran mesin dan pahami algoritma-algoritma populer.', 'Rido Susepto', '179.99'),
 (3, 'Pengembangan Aplikasi Mobile dengan React Native', '2024-06-15', '15', '0', 'Pelajari React Native untuk mengembangkan aplikasi mobile yang dapat berjalan di platform iOS dan Android.', 'Andika Dwi Saputra', '149.99'),
 (4, 'Animasi Dasar', '2024-01-10', '20', '0', 'Pelatihan dasar untuk menguasai teknik animasi', 'John Doe', '100.00'),
 (5, 'Animasi Lanjutan', '2024-02-15', '15', '0', 'Pelatihan untuk meningkatkan keterampilan animasi', 'Jane Smith', '150.00'),
-(6, 'Teknik Animasi 3D', '2024-03-20', '12', '0', 'Belajar teknik animasi tiga dimensi', 'Bob Johnson', '200.00');
+(6, 'Teknik Animasi 3D', '2024-03-20', '12', '0', 'Belajar teknik animasi tiga dimensi', 'Bob Johnson', '200.00'),
+(10, 'dsf', '43234-03-04', '23434', '342', '34\r\n\r\n324\r\n\r\n3\r\n\r\n\r\ndsf', 'fds', '4'),
+(11, 'sa', '0213-03-31', '3123', '0', 'as\r\nd\r\nsd\r\n', 'asd', '3'),
+(12, 'aku', '2024-01-24', '5', '0', 'deskripsi\r\n\r\n', 'mentor', '3');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_magang`
+-- Struktur dari tabel `tb_kelas`
+--
+
+CREATE TABLE `tb_kelas` (
+  `kelas_id` int(11) NOT NULL,
+  `kelas_nama` varchar(100) NOT NULL,
+  `course_nama` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tb_kelas`
+--
+
+INSERT INTO `tb_kelas` (`kelas_id`, `kelas_nama`, `course_nama`) VALUES
+(2, 'XIIR', 'Animasi Dasar'),
+(3, 'XI', 'NextJS'),
+(4, 'XII', 'Animasi Lanjutan'),
+(5, 'XI1', 'Animasi Dasar'),
+(6, 'XIID', 'NextJS');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_magang`
 --
 
 CREATE TABLE `tb_magang` (
@@ -109,190 +144,204 @@ CREATE TABLE `tb_magang` (
   `magang_portofolio` varchar(255) NOT NULL,
   `magang_payment` varchar(20) NOT NULL,
   `status_nama` varchar(50) NOT NULL,
-  `course_nama` varchar(255) NOT NULL,
-  `course_code` varchar(25) NOT NULL
+  `course_nama` varchar(50) NOT NULL,
+  `course_code` varchar(20) NOT NULL,
+  `kelaskategori` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_magang`
+-- Dumping data untuk tabel `tb_magang`
 --
 
-INSERT INTO `tb_magang` (`id_magang`, `magang_nip`, `magang_nama`, `magang_email`, `magang_ttl`, `magang_telp`, `magang_agama`, `magang_gender`, `magang_alamat`, `magang_kota`, `magang_kodepos`, `magang_ktp`, `magang_portofolio`, `magang_payment`, `status_nama`, `course_nama`, `course_code`) VALUES
-(1, '123456', 'John Doe', 'john.doe@example.com', '1990-01-01', '123456789', 'Islam', 'Male', '123 Main Street', 'Rakit', '12345', '1234567890123456', 'http://example.com/portofolio1', 'Paids', 'Pending', 'Teknik Animasi 3D', 'TA3'),
-(2, '789012', 'Jane Smith', 'jane.smith@example.com', '1992-05-15', '987654321', 'Christiani', 'Female', '456 Oak Avenue', 'Townsville', '56789', '7890123456789012', 'http://example.com/portofolio2', 'Unpaid', 'Pending', 'Teknik Motion Graphics', 'TMG'),
-(3, '345678', 'Bob Johnson', 'bob.johnson@example.com', '1985-08-20', '567890123', 'Buddhism', 'Male', '789 Pine Road', 'Villagetown', '67890', '3456789012345678', 'http://example.com/portofolio3', 'Paid', 'Active', '', ''),
-(4, '901234', 'Alice Brown', 'alice.brown@example.com', '1998-03-12', '234567890', 'Hinduism', 'Female', '890 Elm Street', 'Hamletville', '78901', '9012345678901234', 'http://example.com/portofolio4', 'Unpaid', 'Active', 'Memanusiakan Manusia', 'MM'),
-(5, '456789', 'Charlie Davis', 'charlie.davis@example.com', '1980-11-28', '345678901', 'Judaism', 'Male', '123 Cedar Lane', 'Cityburg', '23456', '4567890123456789', 'http://example.com/portofolio5', 'Paid', 'Active', '', 'TA3'),
-(84442, '12345678', 'Restu Setiawan', 'restusetiawan948@gmail.com', 'Rakit, Banjarnegara Jawa Tengah', '081229382848', 'Islam', 'Pria', 'Surakarta', 'Surakarta', '84445', '5765', 'Testing', 'BCA', 'Active', 'Animasi Karakter 101', 'AK1'),
-(84444, 'NIP123', 'Rido Susepto', 'djj@gmail.com', '', '081229382848', 'Islam', 'L', 'rumah nomer 100', 'Rakit', '839232', '93245769410572658', '', 'dine', 'Active', 'Animasi Karakter 101', 'AK1'),
-(84445, 'NIP001', 'Tia Ayu Lestari', 'tiaayu2306@gmail.com', '', '34', '', '', 'Rakit', '', '', '', '', '', 'Pending', 'Animasi Karakter 101', 'AK1'),
-(84453, 'd', 'sd', 'sa', 'asd', 'd', 'as', 'd', 'asd', 'sad', 'as', 'dsa', 'd', 'sads', 'Active', 'das', 'sd'),
-(84454, '121', 'Andika Dwi Saputra', 'adnika.dwi.saputra@gmail.com', 'Juni 2020', '081229382828', 'Islam', 'pria', 'Banjarnegara', 'Bogor', '08', 'ada', 'aslkd', 'BRI', 'Active', 'Animasi Karakter 101', 'AK1');
+INSERT INTO `tb_magang` (`id_magang`, `magang_nip`, `magang_nama`, `magang_email`, `magang_ttl`, `magang_telp`, `magang_agama`, `magang_gender`, `magang_alamat`, `magang_kota`, `magang_kodepos`, `magang_ktp`, `magang_portofolio`, `magang_payment`, `status_nama`, `course_nama`, `course_code`, `kelaskategori`) VALUES
+(84442, '12345678', 'Restu Setiawan', 'restusetiawan948@gmail.com', 'Rakit, Banjarnegara Jawa Tengah', '081229382848', 'Islam', 'Pria', 'Surakarta', 'Surakarta', '84445', '5765', 'kdhf', 'BCA', 'tidur', 'NextJS', '', 'Animasi Lanjutan | XII'),
+(84444, '1234589', 'rrrrrrr', 'bb@gmail.com', '1234444', 'qwwwqwq', '', 'Perempuan', 'sasdadfsdsda', 'dsddsdsfds', '1111', '213', '213', '213', 'aktif j', 'haloo', '', ''),
+(84446, '09090909', 'bbb', 'bb@gmail.com', '1234444', '1234444', 'islam', 'Prempuan', 'sasdadfsdsda', 'dsddsdsfds', '1111', '213', '213', '213', 'Pending', 'haloo', '', ''),
+(84447, '643535565', 'rrrrr', 'suseptoridos@gmail.com', 'lkjlkj', '+6287865515935', 'Islam', 'jjklkjk', 'Rt3/Rw3 Klontong/ Karangsari/ 16 / Jl.Klontong', 'Banjarnegara', '53462', '566565576', 'lklkkj', 'bca', 'aktif j', 'kjkjkjkj', 'llklklk', ''),
+(84448, '324364', 'yyyy', 'suseptoridos@gmail.com', 'iijkj', '+6287865515935', 'Hindu', 'Perempuan', 'Rt3/Rw3 Klontong/ Karangsari/ 16 / Jl.Klontong', 'Banjarnegara', '53462', 'kjjkkj', 'kjkj', 'kjkj', 'aktif j', 'mm', '', 'Animasi Lanjutan | XII'),
+(84449, '324364', 'tttt', 'suseptoridos@gmail.com', 'lkjlkj', '+6287865515935', 'Buddha', 'Prempuan', 'Rt3/Rw3 Klontong/ Karangsari/ 16 / Jl.Klontong', 'Banjarnegara', '53462', 'hjjhh', 'iuhkkhk', 'lklkk', 'magang', 'Pemrograman Java Lanjutan', '', 'NextJS | XI'),
+(84450, '1234589', 'Ahmad riadi', 'suseptoridos@gmail.com', '098766', '1234444', 'Kristen', 'Islam', 'sasdadfsdsda', 'dsddsdsfds', '1111', '213', 'unes', 'bca', 'magang', 'Teknik Animasi 3D', '1122', ''),
+(84451, '098767', 'Budo', 'bb@gmail.com', '3422452426', '1234444', 'Katolik', 'Perempuan', 'sasdadfsdsda', 'dsddsdsfds', '1111', '2345678', 'hhhh', 'ovo', 'aktif j', 'c++', '', 'c++ | XIIttt'),
+(84452, '1234589', 'Budo', 'budi@gmail.com', '3422452426', '1234444', 'Kristen', 'Prempuan', 'ddd', 'dsddsdsfds', '1111', '2345678', 'hhhh', 'ovo', 'magang', 'Pemrograman Java Lanjutan', '', 'NextJS | XI');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_payment`
+-- Struktur dari tabel `tb_payment`
 --
 
 CREATE TABLE `tb_payment` (
   `payment_id` int(11) NOT NULL,
-  `magang_nip` varchar(50) DEFAULT NULL,
-  `payment_metode` varchar(255) DEFAULT NULL,
-  `payment_status` varchar(50) DEFAULT NULL,
+  `magang_nip` varchar(255) DEFAULT NULL,
+  `payment_metode` varchar(50) DEFAULT NULL,
+  `payment_status` int(11) DEFAULT NULL,
   `payment_catatan` varchar(255) DEFAULT NULL,
-  `payment_date` datetime DEFAULT NULL,
+  `payment_date` date DEFAULT NULL,
   `payment_file` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_payment`
+-- Dumping data untuk tabel `tb_payment`
 --
 
 INSERT INTO `tb_payment` (`payment_id`, `magang_nip`, `payment_metode`, `payment_status`, `payment_catatan`, `payment_date`, `payment_file`) VALUES
-(1, '123456789', 'Credit Card', 'Pending', 'Payment for services', '2024-01-12 12:30:00', 'invoice123.pdf'),
-(2, '12345678', 'Bank BNI', '1', 'hkj', '2003-03-31 00:00:00', '1a2d8dee74e569ca143c522cb48150b7.jpg');
+(6, '943109311930', 'Bank Mandiri', 3, 'lunas', '2024-01-18', 'Capture.PNG'),
+(8, '943109311930', 'Ovo', 1, 'memunggu kepastian dari siswa', '2024-01-17', 'Capture.PNG'),
+(9, '1234589', 'Bank BNI', 0, 'menunggu pembayaran', '2024-01-17', '8950656_10864.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pelatihan`
+-- Struktur dari tabel `tb_pelatihan`
 --
 
 CREATE TABLE `tb_pelatihan` (
   `pelatihan_id` int(20) NOT NULL,
   `course_nama` varchar(50) DEFAULT NULL,
-  `magang_nip` varchar(50) DEFAULT NULL,
-  `pelatihan_ket` varchar(1000) DEFAULT NULL,
-  `course_code` varchar(20) NOT NULL
+  `pelatihan_ket` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_pelatihan`
+-- Dumping data untuk tabel `tb_pelatihan`
 --
 
-INSERT INTO `tb_pelatihan` (`pelatihan_id`, `course_nama`, `magang_nip`, `pelatihan_ket`, `course_code`) VALUES
-(1, 'Animasi Karakter 101', 'NIP001', 'Pelatihan dasar animasi karakter menggunakan software', 'AK1'),
-(2, 'Teknik Motion Graphics', 'NIP002', 'Pelatihan mengenai teknik motion graphics dalam animasi', 'TMG'),
-(3, 'Teknik Animasi 3D', 'NIP003', 'Pelatihan tingkat lanjut dalam animasi tiga dimensi', 'TA3'),
-(9, 'Memanusiakan Manusia', NULL, 'Cara memanusiakan Manusia', 'MM'),
-(10, 'Pemrograman Java Lanjutan', NULL, 'java here', 'PJA'),
-(11, 'Pengembangan Aplikasi Mobile dengan React Native', NULL, 'MObile Programming', 'PAM');
+INSERT INTO `tb_pelatihan` (`pelatihan_id`, `course_nama`, `pelatihan_ket`) VALUES
+(1, 'Animasi Dasar', 'Pelatihan dasar dalam dunia animasi, mencakup konsep-konsep dasar dan teknik-teknik animasi 2D.'),
+(2, 'Animasi Lanjutan dan', 'Pelatihan lanjutan untuk pengembangan keterampilan animasi, mencakup teknik animasi 3D dan penggunaan perangkat lunak animasi terkini.'),
+(3, 'Teknik Animasi 3D', 'Pelatihan khusus untuk teknik animasi tiga dimensi (3D), mencakup penggunaan perangkat lunak animasi 3D dan konsep-konsep terkait.'),
+(4, 'NextJS', 'ayoooooaa'),
+(5, 'c++', 'ayyyy');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_status`
+-- Struktur dari tabel `tb_status`
 --
 
 CREATE TABLE `tb_status` (
   `status_id` int(11) NOT NULL,
-  `status_nama` varchar(50) DEFAULT NULL,
-  `status_ket` varchar(255) DEFAULT NULL
+  `status_nama` varchar(50) NOT NULL,
+  `status_ket` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_status`
+-- Dumping data untuk tabel `tb_status`
 --
 
 INSERT INTO `tb_status` (`status_id`, `status_nama`, `status_ket`) VALUES
-(1, 'Active', 'Status aktif'),
-(2, 'Inactive', 'Status tidak aktif'),
-(3, 'Pending', 'Menunggu konfirmasi'),
-(4, 'Completed', 'Selesai'),
-(5, 'Canceled', 'Dibatalkan');
+(1, 'aktif j', 'halloo'),
+(3, 'tidur', 'zzzzz'),
+(4, 'magang', 'smk 1 punggelan'),
+(5, '213', 'smk 1 punggelan');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `tb_admin`
+-- Indeks untuk tabel `payment_detail`
 --
-ALTER TABLE `tb_admin`
-  ADD PRIMARY KEY (`id_admin`);
+ALTER TABLE `payment_detail`
+  ADD PRIMARY KEY (`payment_detail_id`),
+  ADD KEY `payment_id` (`payment_id`);
 
 --
--- Indexes for table `tb_course`
+-- Indeks untuk tabel `tb_course`
 --
 ALTER TABLE `tb_course`
   ADD PRIMARY KEY (`course_id`);
 
 --
--- Indexes for table `tb_magang`
+-- Indeks untuk tabel `tb_kelas`
+--
+ALTER TABLE `tb_kelas`
+  ADD PRIMARY KEY (`kelas_id`);
+
+--
+-- Indeks untuk tabel `tb_magang`
 --
 ALTER TABLE `tb_magang`
   ADD PRIMARY KEY (`id_magang`);
 
 --
--- Indexes for table `tb_payment`
+-- Indeks untuk tabel `tb_payment`
 --
 ALTER TABLE `tb_payment`
   ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indexes for table `tb_pelatihan`
+-- Indeks untuk tabel `tb_pelatihan`
 --
 ALTER TABLE `tb_pelatihan`
   ADD PRIMARY KEY (`pelatihan_id`);
 
 --
--- Indexes for table `tb_status`
+-- Indeks untuk tabel `tb_status`
 --
 ALTER TABLE `tb_status`
   ADD PRIMARY KEY (`status_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `tb_admin`
+-- AUTO_INCREMENT untuk tabel `payment_detail`
 --
-ALTER TABLE `tb_admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `payment_detail`
+  MODIFY `payment_detail_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tb_course`
+-- AUTO_INCREMENT untuk tabel `tb_kelas`
 --
-ALTER TABLE `tb_course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+ALTER TABLE `tb_kelas`
+  MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tb_magang`
+-- AUTO_INCREMENT untuk tabel `tb_magang`
 --
 ALTER TABLE `tb_magang`
-  MODIFY `id_magang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84455;
+  MODIFY `id_magang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84453;
 
 --
--- AUTO_INCREMENT for table `tb_payment`
+-- AUTO_INCREMENT untuk tabel `tb_payment`
 --
 ALTER TABLE `tb_payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `tb_pelatihan`
+-- AUTO_INCREMENT untuk tabel `tb_pelatihan`
 --
 ALTER TABLE `tb_pelatihan`
-  MODIFY `pelatihan_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `pelatihan_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tb_status`
+-- AUTO_INCREMENT untuk tabel `tb_status`
 --
 ALTER TABLE `tb_status`
   MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `payment_detail`
+--
+ALTER TABLE `payment_detail`
+  ADD CONSTRAINT `payment_detail_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `tb_payment` (`payment_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
