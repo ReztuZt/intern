@@ -167,7 +167,7 @@
                                             <select name="magang_gender" class="form-control">
                                                 <option value="<?= $ssw->magang_gender ?>" selected><?= $ssw->magang_gender ?></option>
                                                 <option value="Pria">Pria</option>
-                                                <option value="Prempuan">Prempuan</option>
+                                                <option value="Perempuan">Perempuan</option>
                                             </select>
                                             <?= form_error('magang_gender', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>

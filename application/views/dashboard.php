@@ -1,22 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "root"; // Default username untuk XAMPP
-$password = ""; // Kosongkan password karena umumnya default tidak memiliki password
-$dbname = "internship";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Periksa koneksi
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Query untuk mengambil data dari tabel tb_course
-$sql = "SELECT course_nama, course_tanggal, course_jumlah FROM tb_course";
-$result = $conn->query($sql);
-
-?>
-
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -74,61 +55,74 @@ $result = $conn->query($sql);
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-
                 </div>
             </div>
-
             <!-- ./col -->
-            <div class="card">
-                <div class="card-header border-transparent">
-                    <h3 class="card-title">Course</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-
-                        </button>
+            <!-- DONUT CHART -->
+            <div class="col-lg-4 col-6">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">Presentasi Peserta Berdasarkan Gender</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table m-0">
-                            <thead>
-                                <tr>
-                                    <th>Nama Course</th>
-                                    <th>Tanggal</th>
-                                    <th>Jumlah</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                // Iterasi hasil query dan tampilkan data ke dalam tabel
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr>
-                                <td>{$row['course_nama']}</td>
-                                <td>{$row['course_tanggal']}</td>
-                                <td>{$row['course_jumlah']}</td>
-                                
-                            </tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='4'>No courses found</td></tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- /.card -->
-                <!-- /.row -->
-                <!-- Main row -->
-
-                <!-- /.row (main row) -->
             </div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+            <script>
+                // Ambil data peserta dari PHP dan ubah menjadi JavaScript menggunakan JSON
+                var dataPeserta = <?php echo json_encode($dataPeserta); ?>;
+
+                // Hitung jumlah peserta per gender
+                var jumlahPria = dataPeserta.filter(peserta => peserta.magang_gender === 'Pria').length;
+                var jumlahPerempuan = dataPeserta.filter(peserta => peserta.magang_gender === 'Perempuan').length;
+
+                // Inisialisasi chart
+                var ctx = document.getElementById('donutChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Pria', 'Perempuan'],
+                        datasets: [{
+                            label: 'Jumlah Peserta',
+                            data: [jumlahPria, jumlahPerempuan],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)', // Merah untuk pria
+                                'rgba(54, 162, 235, 0.5)' // Biru untuk perempuan
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Presentasi Peserta Berdasarkan Gender'
+                            }
+                        }
+                    }
+                });
+            </script>
+
+
         </div>
     </div>
     <!-- /.container-fluid -->

@@ -37,9 +37,10 @@
             <img src="<?= base_url('assets/template/') ?>dist/img/user_unknow.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Rido Susepto</a>
+            <a href="#" class="d-block"><?= $this->session->userdata('nama_admin') ?></a>
           </div>
         </div>
+
 
 
 

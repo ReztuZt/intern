@@ -53,8 +53,8 @@
             <label for="magang_gender">Gender</label>
             <select name="magang_gender" class="form-control">
                 <option value="" disabled selected>Pilih Gender</option>
-                <option value="Islam">Pria</option>
-                <option value="Kristen">Prempuan</option>
+                <option value="Pria">Pria</option>
+                <option value="Perempuan">Perempuan</option>
             </select>
             <?= form_error('magang_gender', '<div class="invalid-tooltip">', '</div>'); ?>
         </div>

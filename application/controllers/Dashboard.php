@@ -5,6 +5,7 @@ class Dashboard extends CI_Controller {
     public function __construct(){
         parent::__construct();
         cek_login();
+        $this->load->model('Peserta_model');
         
     }
     public function index()
@@ -12,6 +13,7 @@ class Dashboard extends CI_Controller {
         $data['title'] = 'Dashboard';
         $data['active_magang_count'] = $this->db->where('status_nama', 'Active')->count_all_results('tb_magang');
         $totalIntern = $this->getTotalIntern();
+        $data['dataPeserta'] = $this->Peserta_model->getDataPeserta();
 
         // Menyimpan hasil query dalam data untuk ditampilkan di view
         $data['totalIntern'] = $totalIntern;
