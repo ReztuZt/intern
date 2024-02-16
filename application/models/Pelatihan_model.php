@@ -9,6 +9,35 @@ class Pelatihan_model extends CI_Model
         return $this->db->get($table);
     }
 
+    public function tambahKelas()
+    {
+        $data = [
+            "kelas_nama" => $this->input->post('kelas_nama', true),
+            "course_nama" => $this->input->post('course_nama', true),
+        ];
+
+        $this->db->insert('tb_kelas', $data);
+    }
+
+    public function getCourseNama(){
+        $query = $this->db->get('tb_pelatihan');
+        return $query->result();
+    }
+
+    public function get_data_by_id($kelas_id)
+    {
+        $this->db->where('kelas_id', $kelas_id);
+        return $this->db->get('tb_kelas'); // Mengembalikan hasil kueri sebagai objek CI_DB_result
+    }
+
+
+    public function get_kategori()
+    {
+        $query = $this->db->get('tb_pelatihan');
+        return $query->result();
+    }
+
+
     public function insert_data($data, $table)
     {
         $this->db->insert($table, $data);
@@ -20,6 +49,11 @@ class Pelatihan_model extends CI_Model
         $this->db->update($table, $data);
     }
 
+    public function update_kelas($data, $table)
+    {
+        $this->db->where('kelas_id', $data['kelas_id']);
+        $this->db->update($table, $data);
+    }
 
     public function delete($where, $table)
     {
@@ -27,48 +61,9 @@ class Pelatihan_model extends CI_Model
         $this->db->delete($table);
     }
 
-    public function get_data_by_magang_nip($table, $magang_nip)
+    public function hapusDataKelas($id)
     {
-        // Ambil data dari tabel berdasarkan magang_nip
-        $this->db->where('magang_nip', $magang_nip);
-        return $this->db->get($table);
+        $this->db->where('kelas_id', $id);
+        $this->db->delete('tb_kelas');
     }
-
-    public function getMagangByNIP($nip)
-    {
-        // Replace 'tb_magang' with your actual table name
-        $query = $this->db->get_where('tb_magang', array('magang_nip' => $nip));
-
-        return $query->result();
-    }
-
-    public function getMagangNamaByCourse($course_nama)
-    {
-        $magangTable = 'tb_magang';
-        $pelatihanTable = 'tb_pelatihan';
-    
-        $this->db->select('magang_nama');
-        $this->db->from($magangTable);
-        $this->db->where('magang_nip IN (SELECT magang_nip FROM ' . $pelatihanTable . ' WHERE course_nama = "' . $course_nama . '")');
-        $query = $this->db->get();
-    
-        return $query->result_array();
-    }
-    
-     public function getMagangByCourse($course_code) {
-    // Ambil data dari tabel tb_magang berdasarkan course_nama (pencocokan tepat)
-    $this->db->where('course_code', $course_code);
-    $query = $this->db->get('tb_magang');
-
-    return $query->result();
-}
-
-
-public function searchCourse($searchTerm) {
-    $this->db->like('course_nama', $searchTerm);
-    $query = $this->db->get('tb_magang');
-
-    return $query->result();
-}
-
 }

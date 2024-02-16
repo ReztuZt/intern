@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
 
-        <button data-toggle="modal" data-target="#edit" class="btn btn-success btn-sm" title="Tambah Pelatihan">
+        <button data-toggle="modal" data-target="#edit" class="btn btn-primary btn-sm" title="Tambah Pelatihan">
             <i class="fas fa-plus"></i> Tambah Status
         </button>
 

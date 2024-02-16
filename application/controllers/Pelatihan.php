@@ -16,8 +16,10 @@ class Pelatihan extends CI_Controller
     public function index()
     {
 
-        $data['title'] = 'Pelatihan';
+        $data['title'] = 'Kategori & kelas';
         $data['pelatihan'] = $this->Pelatihan_model->get_data('tb_pelatihan')->result();
+        $data['tb_pelatihan'] = $this->Pelatihan_model->get_data('tb_pelatihan')->result();
+        $data['kelas'] = $this->Pelatihan_model->get_data('tb_kelas')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -28,7 +30,7 @@ class Pelatihan extends CI_Controller
 
     public function tambah()
     {
-        $data['title'] = 'Tambah Pelatihan';
+        $data['title'] = 'Tambah Kategori';
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -36,63 +38,76 @@ class Pelatihan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-
-
-    // public function info()
-    // {
-    //     // Ambil NIP magang dari sesi atau dari sumber lainnya
-    //     $magang_nip = $this->session->userdata('magang_nip'); // Gantilah dengan cara yang sesuai untuk mendapatkan NIP magang
-
-    //     // Cek apakah NIP magang sudah ada
-    //     if ($magang_nip) {
-    //         // Data untuk ditampilkan di view
-    //         $data['title'] = 'Pelatihan';
-    //         $data['pelatihan_info'] = $this->Pelatihan_model->get_data_by_magang_nip('tb_pelatihan', $magang_nip)->result();
-
-    //         // Load view dengan data yang sudah diambil
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('templates/sidebar', $data);
-    //         $this->load->view('pelatihan_info', $data);
-    //         $this->load->view('templates/footer');
-    //     } else {
-    //         // Handle jika NIP magang tidak tersedia
-    //         echo "NIP magang tidak valid atau tidak ditemukan.";
-    //     }
-    // }
-
     public function tambah_aksi()
     {
         echo "Inside tambah_aksi method";
-        // Validasi form
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            // Jika validasi gagal, kembalikan ke halaman tambah
 
             $this->tambah();
         } else {
-            // Jika validasi berhasil, tambahkan data ke database
             $data = array(
                 'course_nama'      => $this->input->post('course_nama'),
-                // 'magang_nip'   => $this->input->post('magang_nip'),
-                'pelatihan_ket'       => $this->input->post('pelatihan_ket'),
-                'course_code'       => $this->input->post('course_code')
+                'pelatihan_ket'     => $this->input->post('pelatihan_ket'),
             );
-
-            // Panggil model untuk menyimpan data
             $this->Pelatihan_model->insert_data($data, 'tb_pelatihan'); // Assuming course_id is auto-incremented
-
-            // Set pesan sukses menggunakan session
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Sukses!</strong> Data berhasil ditambahkan.
                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
                </button>
              </div>');
-
-            // Redirect ke halaman course setelah menambahkan data
             redirect('pelatihan');
         }
+    }
+
+    public function tambah_kelas()
+    {
+        $data['title'] = 'Tambah Kelas';
+        $data['tb_pelatihan'] = $this->Pelatihan_model->get_data('tb_pelatihan')->result();
+
+        $this->form_validation->set_rules('kelas_nama', 'Kelas', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pelatihan/tambah_kelas');
+            $this->load->view('templates/footer');
+        } else {
+            $this->Pelatihan_model->tambahKelas();
+            $this->session->set_flashdata('flash', 'DiTambahkan');
+            redirect('pelatihan');
+        }
+    }
+
+    // public function edit_kelas($kelas_id)
+    // {
+    //     $data['title'] = 'Edit Kelas';
+    //     $data['tb_pelatihan'] = $this->Pelatihan_model->get_data('tb_pelatihan')->result();
+    //     $data['tb_kelas'] = $this->Pelatihan_model->get_data_by_id($kelas_id);
+
+    //     $this->form_validation->set_rules('kelas_nama', 'Kelas', 'required');
+
+
+    //     if ($this->form_validation->run() == FALSE) {
+    //         $this->load->view('templates/header', $data);
+    //         $this->load->view('templates/sidebar', $data);
+    //         $this->load->view('pelatihan/edit_kelas');
+    //         $this->load->view('templates/footer');
+    //     } else {
+    //         $this->Pelatihan_model->editKelas();
+    //         $this->session->set_flashdata('flash', 'DiEdit');
+    //         redirect('pelatihan');
+    //     }
+    // }
+
+    public function deleteKelas($id)
+    {
+        $this->Pelatihan_model->hapusDataKelas($id);
+        $this->session->set_flashdata('flash', 'Dihabus');
+        redirect('pelatihan');
     }
 
     public function _rules()
@@ -100,9 +115,6 @@ class Pelatihan extends CI_Controller
         $this->form_validation->set_rules('course_nama', 'Nama Course', 'required', array(
             'required' => '%s harus diisi !!'
         ));
-        // $this->form_validation->set_rules('magang_nip', 'Magang NIP', 'required', array(
-        //     'required' => '%s harus diisi !!'
- //       ));
         $this->form_validation->set_rules('pelatihan_ket', 'Keterangan Course', 'required', array(
             'required' => '%s harus diisi !!'
         ));
@@ -133,17 +145,13 @@ class Pelatihan extends CI_Controller
         } else {
             $data = array(
                 'course_nama'    => $this->input->post('course_nama'),
-                'magang_nip'     => $this->input->post('magang_nip'),
                 'pelatihan_ket'  => $this->input->post('pelatihan_ket'),
-                'course_code'  => $this->input->post('course_code'),
-                // Add other columns to be updated
             );
 
             try {
                 $this->Pelatihan_model->update_data($id_pelatihan, $data, 'tb_pelatihan');
                 echo 'Update successful'; // Echo a success message if the update is successful
             } catch (Exception $e) {
-                // Echo the error message
                 echo 'Error: ' . $e->getMessage();
             }
 
@@ -152,51 +160,23 @@ class Pelatihan extends CI_Controller
         }
     }
 
-
-    // public function info($nip)
-    // {
-    //     // Load the Pelatihan_model
-    //     $this->load->model('Pelatihan_model');
-
-    //     // Get magang data based on NIP
-    //     $data['magang_data'] = $this->Pelatihan_model->getMagangByNIP($nip);
-
-    //     // Load the view with the magang data
-    //     $this->load->view('pelatihan_info', $data);
-    // }
-
-    public function displayMagangByCourse($course_nama)
+    public function editkelas_aksi($kelas_id)
     {
-        $data['magang_nama'] = $this->Pelatihan_model->getMagangNamaByCourse($course_nama);
-        $this->load->view('pelatiahan/pelatihan_info', $data);
-    }
+        $this->form_validation->set_rules('kelas_nama', 'Nama Kelas', 'required');
+        $this->form_validation->set_rules('course_nama', 'Kategori', 'required');
 
-
-    public function info($course_code)
-    {
-        // Panggil model untuk mendapatkan data magang berdasarkan course_nama
-
-
-        $this->load->model('Pelatihan_model');
-        $data['magang_by_course'] = $this->Pelatihan_model->getMagangByCourse($course_code);
-
-        // Load view untuk menampilkan data
-
-        $data['title'] = 'Info Pelatihan';
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pelatiahan/pelatihan_info', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function searchCourse()
-    {
-        $searchTerm = $this->input->post('searchTerm');
-
-        // Lakukan pencarian data di database
-        $result = $this->Pelatihan_model-- > searchCourse($searchTerm);
-
-        // Ubah hasil pencarian menjadi JSON dan kirimkan ke client
-        echo json_encode($result);
+        if ($this->form_validation->run() == FALSE) {
+            $data['tb_pelatihan'] = $this->Pelatihan_model->getCourseNama();
+            $this->index();
+        } else {
+            // Validasi sukses, update data di database
+            $data = array(
+                'kelas_id' => $kelas_id,
+                'kelas_nama' => $this->input->post('kelas_nama'),
+                'course_nama' => $this->input->post('course_nama')
+            );
+            $this->Pelatihan_model->update_kelas($data, 'tb_kelas');
+            redirect('pelatihan'); // Redirect ke halaman pelatihan setelah update
+        }
     }
 }

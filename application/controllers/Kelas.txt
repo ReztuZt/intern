@@ -1,0 +1,60 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Pelatihan extends CI_Controller
+{
+    public function __construct()
+    {
+     parent::__construct();
+     cek_login();
+     $this->load->model('Kelas_model');   
+     $this->load->library('form_validation');
+    }
+
+    public function index()
+    {
+        $data['kelas'] = $this->Kelas_model->get_data('tb_kelas')->result();
+        $data['tb_pelatihan'] = $this->Kelas_model->get_data('tb_pelatihan')->result();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pelatihan/kelas', $data); 
+        $this->load->view('templates/footer');
+    }
+
+    public function tambah()
+    {
+        $data['title'] = 'Tambah Kelas';
+        $data['tb_pelatihan'] = $this->Kelas_model->get_data('tb_pelatihan')->result();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pelatihan/tambah_kelas');
+        $this->load->view('templates/footer');
+    }
+
+    public function tambah_aksi()
+    {
+        echo "Inside tambah_aksi method";
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['tb_pelatihan'] = $this->Peserta_model->getKategori();
+            $this->load->view('pelatihan/tambah_kelas', $data); // Ganti 'nama_view' dengan nama view yang sesuai
+            $this->tambah();
+        } else {
+            $data = array(
+                'kelas_nama'      => $this->input->post('kelas_nama'),
+                'course_nama'     => $this->input->post('course_nama'),
+            );
+            $this->Kelas_model->insert_data($data, 'tb_kelas'); // Assuming course_id is auto-incremented
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+               <strong>Sukses!</strong> Data berhasil ditambahkan.
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>');
+            redirect('kelas');
+        }
+    }
+}

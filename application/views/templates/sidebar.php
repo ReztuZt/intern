@@ -24,9 +24,9 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
-    <img src="<?= base_url('assets/template/') ?>dist/img/gomonki1.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8; box-shadow: none;">
-    <span class="brand-text font-weight-light">GOMONKI</span>
-</a>
+        <img src="<?= base_url('assets/template/') ?>dist/img/gomonki1.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8; box-shadow: none;">
+        <span class="brand-text font-weight-light">GOMONKI</span>
+      </a>
 
 
       <!-- Sidebar -->
@@ -69,10 +69,11 @@
             <!-- Course -->
             <li class="nav-item">
               <a href="<?= base_url('pelatihan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'pelatihan') echo 'active' ?>">
-                <i class="nav-icon fas fa-chalkboard"></i>
-                <p>Kategori</p>
+                <i class="nav-icon fas fa-graduation-cap"></i> <!-- Menggunakan ikon toga sarjana -->
+                <p>Kategori & Kelas</p>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="<?= base_url('course') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'course') echo 'active' ?>">
                 <i class="nav-icon fas fa-book"></i>

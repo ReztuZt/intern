@@ -48,10 +48,13 @@
                             <td><?= $ssw->magang_portofolio ?></td> -->
                             <td><?= $ssw->magang_payment ?></td>
                             <td><?= $ssw->status_nama ?></td>
+                            <!-- <td><?= $ssw->course_nama ?></td>
+                            <td><?= $ssw->kelaskategori ?></td> -->
                             <td>
                                 <button data-toggle="modal" data-target="#edit<?= $ssw->id_magang ?>" class="btn btn-warning btn-sm m-1"><i class="fas fa-edit"></i></button>
                                 <button data-toggle="modal" data-target="#detail<?= $ssw->id_magang ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>
-                                <a href="<?= base_url('peserta/delete/' . $ssw->id_magang) ?>" class="btn btn-warning btn-sm m-1" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
+                                <!-- <a href="<?= base_url('peserta/detail/' . $ssw->id_magang) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></a> -->
+                                <a href="<?= base_url('peserta/delete/' . $ssw->id_magang) ?>" class="btn btn-danger btn-sm m-1" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -89,7 +92,7 @@
 
         <?php foreach ($peserta as $ssw) : ?>
             <div class="modal fade" id="edit<?= $ssw->id_magang ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Tambahkan kelas modal-lg di sini -->
                     <div class="modal-content" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); border: none; border-radius: 10px;">
                         <div class="modal-header" style="background-color: #007bff; color: #fff; border-radius: 10px 10px 0 0;">
                             <h5 class="modal-title" id="exampleModalLabel">
@@ -102,7 +105,7 @@
                         <div class="modal-body">
                             <form action="<?= base_url('peserta/edit_aksi/' . $ssw->id_magang) ?>" method="POST">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <!-- First Column -->
                                         <div class="form-group">
                                             <label>NIP</label>
@@ -120,7 +123,7 @@
                                             <?= form_error('magang_email', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
                                         <div class="form-group">
-                                            <label>No Telepon</label>
+                                            <label>Telepon</label>
                                             <input type="text" name="magang_telp" class="form-control" value="<?= $ssw->magang_telp ?>">
                                             <?= form_error('magang_telp', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
@@ -137,30 +140,35 @@
                                         <div class="form-group">
                                             <label for="magang_agama">Agama</label>
                                             <select name="magang_agama" class="form-control">
-                                                <option value="" disabled selected>Pilih Agama</option>
-                                                <option value="Islam" <?= $ssw->magang_agama == "Islam" ? 'selected' : '' ?>>Islam</option>
-                                                <option value="Kristen Protestan" <?= $ssw->magang_agama == "Kristen Protestan" ? 'selected' : '' ?>>Kristen Protestan</option>
-                                                <option value="Kristen Katolik" <?= $ssw->magang_agama == "Kristen Katolik" ? 'selected' : '' ?>>Kristen Katolik</option>
-                                                <option value="Hindu" <?= $ssw->magang_agama == "Hindu" ? 'selected' : '' ?>>Hindu</option>
-                                                <option value="Buddha" <?= $ssw->magang_agama == "Buddha" ? 'selected' : '' ?>>Buddha</option>
-                                                <option value="Khonghucu" <?= $ssw->magang_agama == "Khonghucu" ? 'selected' : '' ?>>Khonghucu</option>
+                                                <option value="<?= $ssw->magang_agama ?>" selected><?= $ssw->magang_agama ?></option>
+                                                <option value="Islam">Islam</option>
+                                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                                <option value="Kristen Katolik">Kristen Katolik</option>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Buddha">Buddha</option>
+                                                <option value="Khonghucu">Khonghucu</option>
                                                 <!-- Tambahkan opsi agama lainnya sesuai kebutuhan -->
                                             </select>
                                             <?= form_error('magang_agama', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Course code</label>
+                                        <!-- <div class="form-group">
+                                            <label for="course_code">Course code</label>
                                             <input type="text" name="course_code" class="form-control" value="<?= $ssw->course_code ?>">
                                             <?= form_error('course_code', '<div class="text-small text-danger">', '</div>'); ?>
-                                        </div>
+                                        </div> -->
+
                                         <!-- Add more fields as needed -->
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <!-- Second Column -->
                                         <div class="form-group">
                                             <label>Gender</label>
-                                            <input type="text" name="magang_gender" class="form-control" value="<?= $ssw->magang_gender ?>">
+                                            <select name="magang_gender" class="form-control">
+                                                <option value="<?= $ssw->magang_gender ?>" selected><?= $ssw->magang_gender ?></option>
+                                                <option value="Pria">Pria</option>
+                                                <option value="Prempuan">Prempuan</option>
+                                            </select>
                                             <?= form_error('magang_gender', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
                                         <div class="form-group">
@@ -183,6 +191,8 @@
                                             <input type="text" name="magang_portofolio" class="form-control" value="<?= $ssw->magang_portofolio ?>">
                                             <?= form_error('magang_portofolio', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Pembayaran</label>
                                             <input type="text" name="magang_payment" class="form-control" value="<?= $ssw->magang_payment ?>">
@@ -191,7 +201,7 @@
                                         <div class="form-group">
                                             <label for="status_nama">Status</label>
                                             <select name="status_nama" class="form-control">
-                                                <option value=""><?= $status->status_nama ?></option>
+                                                <option value="<?= $ssw->status_nama ?>"><?= $ssw->status_nama ?></option> <!-- Menampilkan status awal -->
                                                 <?php foreach ($tb_status as $status) : ?>
                                                     <option value="<?= $status->status_nama ?>"><?= $status->status_nama ?></option>
                                                 <?php endforeach; ?>
@@ -200,10 +210,24 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Course Nama</label>
-                                            <input type="text" name="course_nama" class="form-control" value="<?= $ssw->course_nama ?>">
+                                            <select name="course_nama" class="form-control">
+                                                <option value="<?= $ssw->course_nama ?>"><?= $ssw->course_nama ?></option> <!-- Menampilkan status awal -->
+                                                <?php foreach ($tb_course as $status) : ?>
+                                                    <option value="<?= $status->course_nama ?>"><?= $status->course_nama ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                             <?= form_error('course_nama', '<div class="text-small text-danger">', '</div>'); ?>
                                         </div>
-                                        <!-- Add more fields as needed -->
+                                        <div class="form-group">
+                                            <label for="kelaskategori">Kategori & Kelas</label>
+                                            <select name="kelaskategori" class="form-control">
+                                                <option value="<?= $ssw->kelaskategori ?>"><?= $ssw->kelaskategori ?></option>
+                                                <?php foreach ($tb_kelas as $kelaskategori) : ?>
+                                                    <option value="<?= $kelaskategori->course_nama . ' | ' . ($kelaskategori->kelas_nama ?? '') ?>"><?= $kelaskategori->course_nama . ' | ' . ($kelaskategori->kelas_nama ?? '') ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <?= form_error('kelaskategori', '<div class="text-small text-danger">', '</div>'); ?>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -218,12 +242,15 @@
         <?php endforeach; ?>
 
         <?php foreach ($peserta as $ssw) : ?>
+
+
+            <!-- Default box -->
             <div class="modal fade" id="detail<?= $ssw->id_magang ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Tambahkan kelas modal-lg di sini -->
                     <div class="modal-content" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); border: none; border-radius: 10px;">
                         <div class="modal-header" style="background-color: #007bff; color: #fff; border-radius: 10px 10px 0 0;">
                             <h5 class="modal-title" id="exampleModalLabel">
-                                <i class="fas fa-edit me-2"></i> Detail Peserta
+                                <i class="fas fa-detail me-2"></i> Detail Peserta
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" style="color: #fff;">&times;</span>
@@ -231,36 +258,87 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <p><strong>NIP:</strong> <?= $ssw->magang_nip ?></p>
-                                    <p><strong>NAMA:</strong> <?= $ssw->magang_nama ?></p>
-                                    <p><strong>EMAIL:</strong> <?= $ssw->magang_email ?></p>
-                                    <p><strong>TTL:</strong> <?= $ssw->magang_ttl ?></p>
-                                    <p><strong>No.TLPN:</strong> <?= $ssw->magang_telp ?></p>
-                                    <p><strong>AGAMA:</strong> <?= $ssw->magang_agama ?></p>
+                                <div class="col-md-4">
+                                    <!-- Input NIP -->
+                                    <div class="form-group">
+                                        <label for="inputNIP">NIP</label>
+                                        <input type="text" id="inputNIP" class="form-control" value="<?= $ssw->magang_nip ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNIP">Nama</label>
+                                        <input type="text" id="inputNIP" class="form-control" value="<?= $ssw->magang_nama ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNIP">Email</label>
+                                        <input type="text" id="inputNIP" class="form-control" value="<?= $ssw->magang_email ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNIP">TTL</label>
+                                        <input type="text" id="inputNIP" class="form-control" value="<?= $ssw->magang_ttl ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNIP">Telpon</label>
+                                        <input type="text" id="inputNIP" class="form-control" value="<?= $ssw->magang_telp ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNIP">Agama</label>
+                                        <input type="text" id="inputNIP" class="form-control" value="<?= $ssw->magang_agama ?>" readonly>
+                                    </div>
+
                                 </div>
-                                <div class="col-md-6">
-                                    <p><strong>GENDER:</strong> <?= $ssw->magang_gender ?></p>
-                                    <p><strong>ALAMAT:</strong> <?= $ssw->magang_alamat ?></p>
-                                    <p><strong>KOTA:</strong> <?= $ssw->magang_kota ?></p>
-                                    <p><strong>KODE POS:</strong> <?= $ssw->magang_kodepos ?></p>
-                                    <p><strong>KTP:</strong> <?= $ssw->magang_ktp ?></p>
-                                    <p><strong>PORTOFOLIO:</strong> <?= $ssw->magang_portofolio ?></p>
+                                <div class="col-md-4">
+                                    <!-- Input Nama -->
+                                    <div class="form-group">
+                                        <label for="inputNama">Gender</label>
+                                        <input type="text" id="inputNama" class="form-control" value="<?= $ssw->magang_gender ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNama">Alamat</label>
+                                        <input type="text" id="inputNama" class="form-control" value="<?= $ssw->magang_alamat ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNama">Kota</label>
+                                        <input type="text" id="inputNama" class="form-control" value="<?= $ssw->magang_kota ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNama">Kode Pos</label>
+                                        <input type="text" id="inputNama" class="form-control" value="<?= $ssw->magang_kodepos ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNama">KTP</label>
+                                        <input type="text" id="inputNama" class="form-control" value="<?= $ssw->magang_ktp ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNama">Portofolio</label>
+                                        <input type="text" id="inputNama" class="form-control" value="<?= $ssw->magang_portofolio ?>" readonly>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p><strong>PAYMENT:</strong> <?= $ssw->magang_payment ?></p>
-                                    <p><strong>STATUS:</strong> <?= $ssw->status_nama ?></p>
+                                <div class="col-md-4">
+                                    <!-- Input Email -->
+                                    <div class="form-group">
+                                        <label for="inputEmail">Payment</label>
+                                        <input type="text" id="inputEmail" class="form-control" value="<?= $ssw->magang_payment ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail">Status</label>
+                                        <input type="text" id="inputEmail" class="form-control" value="<?= $ssw->status_nama ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail">Status</label>
+                                        <input type="text" id="inputEmail" class="form-control" value="<?= $ssw->kelaskategori ?>" readonly>
+                                    </div>
                                 </div>
+                                <!-- Tambahan input lainnya -->
                             </div>
                         </div>
-
-
+                        <!-- /.modal-body -->
                     </div>
+                    <!-- /.modal-content -->
                 </div>
+                <!-- /.modal-dialog -->
             </div>
+            <!-- /.modal -->
+
         <?php endforeach; ?>
 
 

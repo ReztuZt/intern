@@ -64,7 +64,7 @@
                                     <!-- <a href="<?= base_url('payment/detail/' . $ssw->payment_id) ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Detail</a> -->
                                     <!-- <button data-toggle="modal" data-target="#detail<?= $ssw->payment_id ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Detail</button> -->
                                     <button data-toggle="modal" data-target="#edit<?= $ssw->payment_id ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
-                                    <a href="<?= base_url('payment/delete/' . $ssw->payment_id) ?>" class="btn btn-warning btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash"></i></a>
+                                    <a href="<?= base_url('payment/delete/' . $ssw->payment_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini')"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         </tbody>

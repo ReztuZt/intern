@@ -112,6 +112,17 @@
             <?= form_error('course_nama', '<div class="invalid-tooltip">', '</div>'); ?>
         </div>
         <div class="col-md-6 mb-3">
+            <label for="kelaskategori">Kategori & Kelas</label>
+            <select class="form-control" id="kelaskategori" name="kelaskategori" required>
+                <option value="" disabled selected>Pilih Kelas & Kategori</option>
+                <?php foreach ($tb_kelas as $kelaskategori) : ?>
+                    <option value="<?= $kelaskategori->course_nama ?>"><?= $kelaskategori->course_nama . ' | ' . ($kelaskategori->kelas_nama ?? '') ?></option>
+                <?php endforeach; ?>
+            </select>
+            <?= form_error('kelaskategori', '<div class="invalid-tooltip">', '</div>'); ?>
+        </div>
+
+        <div class="col-md-6 mb-3">
             <label for="validationTooltip11">Course Code</label>
             <input type="text" class="form-control" id="validationTooltip11" name="course_code" required>
             <?= form_error('course_code', '<div class="invalid-tooltip">', '</div>'); ?>

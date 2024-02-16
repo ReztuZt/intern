@@ -17,6 +17,7 @@ class Peserta extends CI_Controller
         $data['peserta'] = $this->Peserta_model->get_data('tb_magang')->result();
         $data['tb_status'] = $this->Peserta_model->get_data('tb_status')->result();
         $data['tb_course'] = $this->Peserta_model->get_data('tb_course')->result();
+        $data['tb_kelas'] = $this->Peserta_model->get_data('tb_kelas')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -29,6 +30,7 @@ class Peserta extends CI_Controller
         $data['title'] = 'Tambah Peserta';
         $data['tb_status'] = $this->Peserta_model->get_data('tb_status')->result();
         $data['tb_course'] = $this->Peserta_model->get_data('tb_course')->result();
+        $data['tb_kelas'] = $this->Peserta_model->get_data('tb_kelas')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -45,6 +47,7 @@ class Peserta extends CI_Controller
             // Jika validasi gagal, kembalikan ke halaman tambah
             $data['tb_status'] = $this->Peserta_model->getStatusNama();
             $data['tb_course'] = $this->Peserta_model->getCourseNama(); // Mengambil NIP dari model
+            $data['tb_kelas'] = $this->Peserta_model->getKelasNama(); // Mengambil NIP dari model
             $this->load->view('peserta/tambah_peserta', $data); // Ganti 'nama_view' dengan nama view yang sesuai
 
             $this->tambah();
@@ -66,6 +69,7 @@ class Peserta extends CI_Controller
                 'magang_portofolio' => $this->input->post('magang_portofolio'),
                 'magang_payment' => $this->input->post('magang_payment'),
                 'course_nama'  => $this->input->post('course_nama'),
+                'kelaskategori'  => $this->input->post('kelaskategori'),
                 'course_code'  => $this->input->post('course_code'),
             );
 
@@ -90,6 +94,7 @@ class Peserta extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data['tb_status'] = $this->Peserta_model->getStatusNama();
+            $data['tb_kelas'] = $this->Peserta_model->getKelasNama();
             $this->index();
         } else {
             $data = array(
@@ -108,6 +113,7 @@ class Peserta extends CI_Controller
                 'magang_portofolio' => $this->input->post('magang_portofolio'),
                 'magang_payment'  => $this->input->post('magang_payment'),
                 'course_nama'  => $this->input->post('course_nama'),
+                'kelaskategori'  => $this->input->post('kelaskategori'),
                 'course_code'  => $this->input->post('course_code'),
             );
 
