@@ -92,7 +92,7 @@
         <div class="col-md-6 mb-3">
             <label for="status_nama">Status</label>
             <select class="form-control" id="status_nama" name="status_nama" required>
-                <option value="" disabled selected>Pilih Status</option>
+            <option value="">Pilih Status</option>
                 <?php foreach ($tb_status as $status) : ?>
                     <option value="<?= $status->status_nama ?>"><?= $status->status_nama ?></option>
                 <?php endforeach; ?>
@@ -103,30 +103,31 @@
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label for="course_nama">Nama Course</label>
-            <select class="form-control" id="course_nama" name="course_nama" required>
-                <option value="" disabled selected>Pilih Status</option>
+            <select class="form-control" id="course_nama" name="course_nama">
+                <option value="">Pilih Course</option>
                 <?php foreach ($tb_course as $course) : ?>
                     <option value="<?= $course->course_nama ?>"><?= $course->course_nama ?></option>
                 <?php endforeach; ?>
             </select>
-            <?= form_error('course_nama', '<div class="invalid-tooltip">', '</div>'); ?>
         </div>
-        <div class="col-md-6 mb-3">
-            <label for="kelaskategori">Kategori & Kelas</label>
-            <select class="form-control" id="kelaskategori" name="kelaskategori" required>
-                <option value="" disabled selected>Pilih Kelas & Kategori</option>
-                <?php foreach ($tb_kelas as $kelaskategori) : ?>
-                    <option value="<?= $kelaskategori->course_nama ?>"><?= $kelaskategori->course_nama . ' | ' . ($kelaskategori->kelas_nama ?? '') ?></option>
-                <?php endforeach; ?>
-            </select>
-            <?= form_error('kelaskategori', '<div class="invalid-tooltip">', '</div>'); ?>
-        </div>
+    
 
-        <div class="col-md-6 mb-3">
-            <label for="validationTooltip11">Course Code</label>
-            <input type="text" class="form-control" id="validationTooltip11" name="course_code" required>
-            <?= form_error('course_code', '<div class="invalid-tooltip">', '</div>'); ?>
-        </div>
+    <div class="col-md-6 mb-3">
+        <label for="kelaskategori">Kategori & Kelas</label>
+        <select class="form-control" id="kelaskategori" name="kelaskategori" required>
+            <option value="" disabled selected>Pilih Kelas & Kategori</option>
+            <?php foreach ($tb_kelas as $kelaskategori) : ?>
+                <option value="<?= $kelaskategori->course_nama ?>"><?= $kelaskategori->course_nama . ' | ' . ($kelaskategori->kelas_nama ?? '') ?></option>
+            <?php endforeach; ?>
+        </select>
+        <?= form_error('kelaskategori', '<div class="invalid-tooltip">', '</div>'); ?>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="validationTooltip11">Course Code</label>
+        <input type="text" class="form-control" id="validationTooltip11" name="course_code" required>
+        <?= form_error('course_code', '<div class="invalid-tooltip">', '</div>'); ?>
+    </div>
     </div>
     <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i>Submit form</button>
 </form>

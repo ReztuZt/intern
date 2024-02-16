@@ -216,7 +216,7 @@
                                                     <option value="<?= $status->course_nama ?>"><?= $status->course_nama ?></option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <?= form_error('course_nama', '<div class="text-small text-danger">', '</div>'); ?>
+                                            <!-- <?= form_error('course_nama', '<div class="text-small text-danger">', '</div>'); ?> -->
                                         </div>
                                         <div class="form-group">
                                             <label for="kelaskategori">Kategori & Kelas</label>

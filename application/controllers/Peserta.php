@@ -145,9 +145,9 @@ class Peserta extends CI_Controller
         $this->form_validation->set_rules('magang_alamat', 'Alamat', 'required', array(
             'required' => '%s harus diisi !!'
         ));
-        $this->form_validation->set_rules('status_nama', 'Status', 'required', array(
-            'required' => '%s harus diisi !!'
-        ));
+        // $this->form_validation->set_rules('status_nama', 'Status', 'required', array(
+        //     'required' => '%s harus diisi !!'
+        // ));
     }
 
     public function delete($id)

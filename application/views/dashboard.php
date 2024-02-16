@@ -59,7 +59,7 @@
             </div>
             <!-- ./col -->
             <!-- DONUT CHART -->
-            <div class="col-lg-4 col-6">
+            <div class="col-lg-8 col-6">
                 <div class="card card-danger">
                     <div class="card-header">
                         <h3 class="card-title">Presentasi Peserta Berdasarkan Gender</h3>
